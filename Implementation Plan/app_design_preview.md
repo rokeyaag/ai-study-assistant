@@ -1,8 +1,7 @@
-# 📱 EduGenius AI - Mobile App UI Design Preview
+# 📱 AI Study Assistant - Mobile App UI Design Preview
 
 এখানে অ্যাপটির কমপ্লিট মোবাইল UI ডিজাইন ও লেআউট প্রিভিউ দেওয়া হলো:
 
-![EduGenius Mobile App UI Design](C:/Users/HP/.gemini/antigravity/brain/b5dec2c1-147f-434c-bcfd-8fb747fdd015/edugenius_mobile_ui_1786942972107.jpg)
 
 ---
 

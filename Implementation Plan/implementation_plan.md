@@ -1,13 +1,13 @@
-# EduGenius AI - AI-Powered Gamified Learning Platform
+# AI Study Assistant - AI-Powered Gamified Learning Platform
 
-EduGenius AI is a modern, mobile-first educational application that empowers students to learn smarter through an AI-driven Knowledge Base, instant textbook page scanner (OCR + AI explanation), a gamified reward point system, interactive MCQ practice arenas, and a flexible points-to-subscription economy.
+AI Study Assistant is a modern, mobile-first educational application that empowers students to learn smarter through an AI-driven Knowledge Base, instant textbook page scanner (OCR + AI explanation), a gamified reward point system, interactive MCQ practice arenas, and a flexible points-to-subscription economy.
 
 ---
 
 ## User Review Required
 
 > [!IMPORTANT]
-> **Project Location**: The app will be scaffolded in `C:\Users\HP\.gemini\antigravity\scratch\edugenius-ai` using Vite + React + Lucide Icons + Tailwind CSS for native-app-like mobile responsiveness, fluid animations, and sound effects.
+> **Project Location**: Vite + React + Lucide Icons + Tailwind CSS for native-app-like mobile responsiveness, fluid animations, and sound effects.
 
 > [!TIP]
 > **Points-to-Subscription Economy**:
@@ -41,7 +41,7 @@ graph TD
 ## Proposed Changes & Components
 
 ### 1. Project Scaffolding
-- Initialize React + Vite project in `C:\Users\HP\.gemini\antigravity\scratch\edugenius-ai`.
+- Initialize React + Vite project with Tailwind CSS and Lucide Icons.
 - Install `lucide-react`, `canvas-confetti` (for celebration effects), and setup Tailwind CSS with custom sleek dark/light color palette, glassmorphism, and mobile container styling.
 
 ### 2. State & Data Layer (`src/context/AppContext.jsx`)

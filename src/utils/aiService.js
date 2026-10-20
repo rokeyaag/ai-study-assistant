@@ -3,7 +3,7 @@
 export const GEMINI_STORAGE_KEY = 'aistudy_gemini_api_key';
 
 export const getStoredApiKey = () => {
-  return localStorage.getItem(GEMINI_STORAGE_KEY) || localStorage.getItem('edugenius_gemini_api_key') || '';
+  return localStorage.getItem(GEMINI_STORAGE_KEY) || localStorage.getItem('aistudy_gemini_backup_key') || '';
 };
 
 export const setStoredApiKey = (key) => {

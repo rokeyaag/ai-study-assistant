@@ -1,4 +1,4 @@
-EduGeniusAI/
+AI_Study_Assistant/
 ├── 📁 Implementation Plan/               # আর্কিটেকচারাল ডিজাইন ও প্ল্যানিং নোটস
 │   ├── app_design_preview.md
 │   └── implementation_plan.md
@@ -30,9 +30,9 @@ EduGeniusAI/
 ├── index.html                            # এসপিএ রুট এইচটিএমএল
 ├── package.json                          # প্রজেক্ট মেটাডেটা ও স্ক্রিপ্টস
 ├── vite.config.js                        # Vite বান্ডলার কনফিগারেশন
-├── EduGeniusAI_Project_Structure.html    # ভিজ্যুয়াল ডকুমেন্টেশন (HTML)
-├── EduGeniusAI_Project_Structure.pdf     # ডকুমেন্টেশন (PDF)
-└── EduGeniusAI_Project_Structure.docx    # ডকুমেন্টেশন (Word DOCX)
+├── AI_Study_Assistant_Project_Structure.html    # ভিজ্যুয়াল ডকুমেন্টেশন (HTML)
+├── AI_Study_Assistant_Project_Structure.pdf     # ডকুমেন্টেশন (PDF)
+└── AI_Study_Assistant_Project_Structure.docx    # ডকুমেন্টেশন (Word DOCX)
 
 ********************************************************************************************
 graph TD

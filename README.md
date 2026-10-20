@@ -1,4 +1,4 @@
-# 🎓 EduGenius AI - Socratic AI Study Companion & Gamified Learning Platform
+# 🎓 AI Study Assistant - Socratic AI Study Companion & Gamified Learning Platform
 
 [![React](https://img.shields.io/badge/React-19.0-61dafb?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-6.0-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
@@ -7,14 +7,14 @@
 [![Web Audio API](https://img.shields.io/badge/Web_Audio_API-Synthesized_FX-FF5722?style=for-the-badge&logo=w3c&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-> **EduGenius AI** is an intelligent, gamified study assistant built for STEM students. It bridges the gap between static textbooks and active comprehension through **Textbook Page OCR + Step-by-Step AI Problem Solving**, an interactive **Socratic Voice & Chat Tutor**, a **Gamified MCQ Arena**, a **Personalized Knowledge Vault ("ডিজিটাল খাতা")**, and an inclusive **Points-to-Subscription Reward Economy**.
+> **AI Study Assistant** is an intelligent, gamified study assistant built for STEM students. It bridges the gap between static textbooks and active comprehension through **Textbook Page OCR + Step-by-Step AI Problem Solving**, an interactive **Socratic Voice & Chat Tutor**, a **Gamified MCQ Arena**, a **Personalized Knowledge Vault ("ডিজিটাল খাতা")**, and an inclusive **Points-to-Subscription Reward Economy**.
 
 ---
 
 ## 🌟 The Problem & Our Solution
 
 - **The Problem**: Students studying rigorous STEM subjects (Physics, Chemistry, Higher Mathematics, Biology) often get stuck on complex textbook problems late at night without an accessible teacher. Traditional private tutors are expensive, and generic AI chatbots simply regurgitate final answers without fostering true conceptual understanding.
-- **Our Solution**: **EduGenius AI** acts as a personal 24/7 Socratic mentor. It doesn't just hand over answers; it deconstructs complex equations step-by-step, highlights common exam traps, lets students ask clarifying questions, and rewards daily study consistency with redeemable points so that even students who cannot afford paid subscriptions can unlock Pro access for free.
+- **Our Solution**: **AI Study Assistant** acts as a personal 24/7 Socratic mentor. It doesn't just hand over answers; it deconstructs complex equations step-by-step, highlights common exam traps, lets students ask clarifying questions, and rewards daily study consistency with redeemable points so that even students who cannot afford paid subscriptions can unlock Pro access for free.
 
 ---
 
@@ -51,7 +51,7 @@
 
 ```mermaid
 graph TD
-    User([Student / Learner]) --> UI[EduGenius UI - React 19 + Tailwind v4]
+    User([Student / Learner]) --> UI[AI Study Assistant UI - React 19 + Tailwind v4]
     
     subgraph Core Features
         UI --> Scanner[AI Book Page Scanner]
@@ -99,8 +99,8 @@ graph TD
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/edugenius-ai.git
-cd edugenius-ai
+git clone https://github.com/YOUR_USERNAME/ai-study-assistant.git
+cd ai-study-assistant
 ```
 
 ### 2. Install dependencies
@@ -123,7 +123,7 @@ The optimized production bundle will be generated in the `dist/` directory.
 ---
 
 ## 🔑 Optional Gemini API Key Configuration
-EduGenius AI includes built-in smart educational presets that work out of the box with zero setup. To test custom live images and textbook scans:
+AI Study Assistant includes built-in smart educational presets that work out of the box with zero setup. To test custom live images and textbook scans:
 1. Open the **AI Tutor** tab.
 2. Click the **API Key** button in the top right.
 3. Paste your free Google AI Studio key (`AIzaSy...`).
@@ -135,13 +135,13 @@ EduGenius AI includes built-in smart educational presets that work out of the bo
 
 1. Push your repository to GitHub.
 2. Go to [Vercel](https://vercel.com/) and click **"Add New Project"**.
-3. Import your `edugenius-ai` repository.
+3. Import your `ai-study-assistant` repository.
 4. Framework preset: **Vite** (auto-detected).
 5. Click **"Deploy"** — your live link will be ready in under 60 seconds!
 
 ---
 
 ## 👥 Hackathon Submission Details
-- **Project Name**: EduGenius AI
+- **Project Name**: AI Study Assistant
 - **Category**: Education, AI for Social Good, Gamification
 - **License**: MIT License
