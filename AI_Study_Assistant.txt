@@ -1,0 +1,56 @@
+EduGeniusAI/
+├── 📁 Implementation Plan/               # আর্কিটেকচারাল ডিজাইন ও প্ল্যানিং নোটস
+│   ├── app_design_preview.md
+│   └── implementation_plan.md
+├── 📁 dist/                              # প্রোডাকশন বিল্ড আউটপুট
+├── 📁 node_modules/                      # ইনস্টল করা ডিপেনডেন্সিসমূহ
+├── 📁 src/                               # মূল ফ্রন্টএন্ড সোর্স কোড
+│   ├── 📁 components/                    # গ্লোবাল ও রিইউজেবল ইউআই কম্পোনেন্টসমূহ
+│   │   ├── AudioPodcastModal.jsx         # এআই অডিও পডকাস্ট প্লেয়ার মডাল
+│   │   ├── BottomNavigation.jsx          # মোবাইল-স্টাইল ৫-ট্যাব বটম নেভিগেশন
+│   │   ├── CheatSheetModal.jsx           # কুইক রিভিশন সূত্র ও মাইন্ডম্যাপ পপআপ
+│   │   ├── Header.jsx                    # টপ বার (কয়েন, স্ট্রিক ও ডিভাইস ফ্রেম টগল)
+│   │   ├── NotificationToast.jsx         # সাকসেস/অ্যালার্ট টোস্ট ব্যানার
+│   │   └── RedemptionModal.jsx           # জেন কয়েন দিয়ে রিওয়ার্ড রিডেম্পশন ডায়ালগ
+│   ├── 📁 context/                       # গ্লোবাল স্টেট ম্যানেজমেন্ট লেয়ার
+│   │   └── AppContext.jsx                # রিঅ্যাক্ট কনটেক্সট (পয়েন্ট, কয়েন, ট্যাব ও অডিও স্টেট)
+│   ├── 📁 data/                          # মক ডেটা ও স্ট্যাটিক কনটেন্ট
+│   │   └── mockData.js                   # ইউজার প্রোফাইল, কুইজ প্রশ্ন ও শপ ক্যাটালগ
+│   ├── 📁 utils/                         # হেল্পার ও ইউটিলিটি মডিউল
+│   │   └── audioEffects.js               # ব্রাউজার সিন্থেসাইজড সাউন্ড এফেক্টস (Web Audio API)
+│   ├── 📁 views/                         # অ্যাপের প্রধান ৫টি স্ক্রিন / ভিউ
+│   │   ├── AITutorView.jsx               # এআই টিউটর চ্যাট ও ডাউট সলভার
+│   │   ├── DashboardView.jsx             # হোম ড্যাশবোর্ড, স্ট্রিক ও ডেইলি টাস্ক
+│   │   ├── KnowledgeVaultView.jsx        # কোর্স নোটস, সূত্র ও পডকাস্ট লাইব্রেরি
+│   │   ├── QuizArenaView.jsx             # গ্যামিফাইড টাইমার কুইজ ও স্কোরবোর্ড
+│   │   └── SubscriptionStoreView.jsx     # প্রো প্ল্যানস ও কয়েন রিওয়ার্ড স্টোর
+│   ├── App.jsx                           # মেইন অ্যাপ লেআউট ও ভিউ সুইচিং রুট
+│   ├── index.css                         # গ্লোবাল স্টাইল ও Tailwind ইমপোর্ট
+│   └── main.jsx                          # React DOM ইনিশিয়ালাইজার
+├── index.html                            # এসপিএ রুট এইচটিএমএল
+├── package.json                          # প্রজেক্ট মেটাডেটা ও স্ক্রিপ্টস
+├── vite.config.js                        # Vite বান্ডলার কনফিগারেশন
+├── EduGeniusAI_Project_Structure.html    # ভিজ্যুয়াল ডকুমেন্টেশন (HTML)
+├── EduGeniusAI_Project_Structure.pdf     # ডকুমেন্টেশন (PDF)
+└── EduGeniusAI_Project_Structure.docx    # ডকুমেন্টেশন (Word DOCX)
+
+********************************************************************************************
+graph TD
+    Root[main.jsx] --> AppContext[AppContext.Provider]
+    AppContext --> App[App.jsx]
+    
+    App --> Header[Header.jsx]
+    App --> MainViewContainer[Active View Container]
+    App --> BottomNav[BottomNavigation.jsx]
+    
+    MainViewContainer --> V1[DashboardView]
+    MainViewContainer --> V2[AITutorView]
+    MainViewContainer --> V3[QuizArenaView]
+    MainViewContainer --> V4[KnowledgeVaultView]
+    MainViewContainer --> V5[SubscriptionStoreView]
+    
+    App --> M1[AudioPodcastModal]
+    App --> M2[CheatSheetModal]
+    App --> M3[RedemptionModal]
+    App --> M4[NotificationToast]
+*****************************************************************************************

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>EduGenius AI - সম্পূর্ণ প্রজেক্ট আর্কিটেকচার ও স্ট্রাকচার ডকুমেন্টেশন</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: A4;
+      margin: 14mm 14mm 14mm 14mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      font-family: 'Hind Siliguri', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #1e293b;
+      background: #ffffff;
+      line-height: 1.6;
+      font-size: 13.5px;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Cover Page */
+    .cover-page {
+      padding: 40px 30px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 60%, #311042 100%);
+      color: #ffffff;
+      border-radius: 16px;
+      margin-bottom: 25px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.3);
+    }
+
+    .cover-badge {
+      display: inline-block;
+      padding: 5px 14px;
+      background: rgba(99, 102, 241, 0.25);
+      border: 1px solid rgba(129, 140, 248, 0.4);
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: #a5b4fc;
+      margin-bottom: 15px;
+    }
+
+    .cover-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0 0 10px 0;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+    }
+
+    .cover-subtitle {
+      font-size: 16px;
+      color: #cbd5e1;
+      margin: 0 0 25px 0;
+      max-width: 600px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .meta-item {
+      font-size: 11.5px;
+    }
+    .meta-item .label {
+      color: #94a3b8;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 0.5px;
+      margin-bottom: 3px;
+    }
+    .meta-item .value {
+      font-weight: 600;
+      color: #f8fafc;
+      font-size: 12.5px;
+    }
+
+    /* Section Styling */
+    .section-title {
+      font-size: 19px;
+      font-weight: 700;
+      color: #0f172a;
+      border-left: 4px solid #6366f1;
+      padding-left: 10px;
+      margin: 25px 0 14px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 14px;
+      page-break-inside: avoid;
+    }
+
+    /* Tech Stack Badges */
+    .badges-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0;
+    }
+    .tech-pill {
+      background: #eef2ff;
+      color: #4338ca;
+      border: 1px solid #c7d2fe;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* Tree View Box */
+    .tree-box {
+      background: #0f172a;
+      color: #e2e8f0;
+      font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
+      padding: 18px 20px;
+      border-radius: 10px;
+      font-size: 12px;
+      line-height: 1.6;
+      white-space: pre;
+      overflow-x: auto;
+      margin: 12px 0 20px 0;
+      page-break-inside: avoid;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+    }
+    .tree-folder { color: #38bdf8; font-weight: bold; }
+    .tree-file { color: #cbd5e1; }
+    .tree-comment { color: #64748b; font-style: italic; }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 12.5px;
+      page-break-inside: avoid;
+    }
+
+    th {
+      background: #f1f5f9;
+      color: #334155;
+      font-weight: 600;
+      text-align: left;
+      padding: 9px 12px;
+      border: 1px solid #cbd5e1;
+    }
+
+    td {
+      padding: 8px 12px;
+      border: 1px solid #e2e8f0;
+      color: #334155;
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    .file-tag {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      font-size: 11px;
+      background: #e2e8f0;
+      color: #0f172a;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .tag-green {
+      background: #dcfce7;
+      color: #15803d;
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    .tag-blue {
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    .tag-purple {
+      background: #f3e8ff;
+      color: #7e22ce;
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    .flow-step {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      page-break-inside: avoid;
+    }
+    .flow-num {
+      width: 24px;
+      height: 24px;
+      background: #6366f1;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: bold;
+      margin-right: 12px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .flow-content {
+      flex: 1;
+    }
+    .flow-title {
+      font-weight: 600;
+      color: #0f172a;
+      font-size: 13px;
+    }
+    .flow-desc {
+      color: #64748b;
+      font-size: 12px;
+    }
+
+    .footer {
+      margin-top: 30px;
+      padding-top: 12px;
+      border-top: 1px solid #e2e8f0;
+      text-align: center;
+      font-size: 11px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cover Page Header -->
+  <div class="cover-page">
+    <div class="cover-badge">PROJECT ARCHITECTURE & FULL DIRECTORY SPECIFICATION</div>
+    <h1 class="cover-title">EduGenius AI</h1>
+    <p class="cover-subtitle">
+      একটি আধুনিক, ইন্টারেক্টিভ ও মোবাইল-ফার্স্ট গ্যামিফাইড এডুকেশন প্ল্যাটফর্ম। এতে রয়েছে এআই টিউটর, অডিও পডকাস্ট, ইন্টারেক্টিভ কুইজ এরিনা এবং নলেজ ভল্ট।
+    </p>
+
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="label">প্রজেক্ট নাম</div>
+        <div class="value">edugenius-ai</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">ভার্সন ও টাইপ</div>
+        <div class="value">v1.0.0 (ES Module)</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">ফ্রন্টএন্ড ফ্রেমওয়ার্ক</div>
+        <div class="value">React 19 + Vite 6</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">CSS আর্কিটেকচার</div>
+        <div class="value">Tailwind CSS v4.0</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ১. টেকনোলজি ও ডিপেনডেন্সি -->
+  <div class="section-title">১. টেকনোলজি স্ট্যাক ও লাইব্রেরিসমূহ (Technology Stack)</div>
+  <div class="card">
+    <p style="margin-top: 0;">প্রজেক্টটিতে ব্যবহৃত প্রধান ফ্রেমওয়ার্ক, লাইব্রেরি এবং টুলসগুলোর বিবরণ:</p>
+    <div class="badges-container">
+      <span class="tech-pill">React 19.0</span>
+      <span class="tech-pill">Vite 6.0</span>
+      <span class="tech-pill">Tailwind CSS 4.0</span>
+      <span class="tech-pill">Lucide React 1.16</span>
+      <span class="tech-pill">Canvas Confetti 1.9</span>
+      <span class="tech-pill">Web Audio API</span>
+      <span class="tech-pill">React Context API</span>
+    </div>
+    <table style="margin-bottom: 0;">
+      <thead>
+        <tr>
+          <th>প্যাকেজের নাম</th>
+          <th>ভার্সন</th>
+          <th>ক্যাটেগরি</th>
+          <th>ভূমিকা / ব্যবহারের কারণ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>react</strong> & <strong>react-dom</strong></td>
+          <td>^19.0.0</td>
+          <td><span class="tag-blue">Core Frontend</span></td>
+          <td>ইউআই কম্পোনেন্ট রেন্ডারিং, রিঅ্যাক্টিভ স্টেট এবং ইন্টারঅ্যাকশন।</td>
+        </tr>
+        <tr>
+          <td><strong>vite</strong></td>
+          <td>^6.0.0</td>
+          <td><span class="tag-purple">Build Tool</span></td>
+          <td>আল্ট্রাফাস্ট এইচএমআর (HMR) এবং প্রোডাকশন বান্ডেল অপ্টিমাইজেশন।</td>
+        </tr>
+        <tr>
+          <td><strong>tailwindcss</strong> & <strong>@tailwindcss/vite</strong></td>
+          <td>^4.0.0</td>
+          <td><span class="tag-blue">Styling</span></td>
+          <td>লেটেস্ট Tailwind 4 ইঞ্জিন দিয়ে গ্লাস-মরফিক ডার্ক মোড স্টাইলিং।</td>
+        </tr>
+        <tr>
+          <td><strong>lucide-react</strong></td>
+          <td>^1.16.0</td>
+          <td><span class="tag-green">Icons</span></td>
+          <td>আধুনিক, লাইটওয়েট এবং স্কেলেবল ভেক্টর এসভিজি আইকন সেট।</td>
+        </tr>
+        <tr>
+          <td><strong>canvas-confetti</strong></td>
+          <td>^1.9.4</td>
+          <td><span class="tag-purple">Gamification</span></td>
+          <td>কুইজ জয় ও রিওয়ার্ড আনলক করার পর কনফেটি অ্যানিমেশন প্রদর্শনের জন্য।</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ২. সম্পূর্ণ ডিরেক্টরি ট্রি -->
+  <div class="section-title">২. সম্পূর্ণ প্রজেক্ট স্ট্রাকচার (Directory Tree)</div>
+  <div class="tree-box">
+<span class="tree-folder">EduGeniusAI/</span>
+├── <span class="tree-folder">Implementation Plan/</span>               <span class="tree-comment"># প্রজেক্ট প্ল্যানিং এবং ডিজাইন স্পেসিফিকেশন</span>
+│   ├── <span class="tree-file">app_design_preview.md</span>
+│   └── <span class="tree-file">implementation_plan.md</span>
+├── <span class="tree-folder">dist/</span>                              <span class="tree-comment"># প্রোডাকশন বিল্ড আউটপুট</span>
+├── <span class="tree-folder">node_modules/</span>                      <span class="tree-comment"># প্যাকেজ ডিপেনডেন্সিসমূহ</span>
+├── <span class="tree-folder">src/</span>                               <span class="tree-comment"># মূল সোর্স কোড ডিরেক্টরি</span>
+│   ├── <span class="tree-folder">components/</span>                    <span class="tree-comment"># রিইউজেবল ইউআই কম্পোনেন্ট ও মডালসমূহ</span>
+│   │   ├── <span class="tree-file">AudioPodcastModal.jsx</span>      <span class="tree-comment"># এআই অডিও সারাংশ ও পডকাস্ট প্লেয়ার</span>
+│   │   ├── <span class="tree-file">BottomNavigation.jsx</span>       <span class="tree-comment"># মোবাইল অ্যাপ স্টাইল ৫-ট্যাব নেভিগেশন</span>
+│   │   ├── <span class="tree-file">CheatSheetModal.jsx</span>        <span class="tree-comment"># কুইক রিভিশন চিট-শীট ও মাইন্ডম্যাপ পপআপ</span>
+│   │   ├── <span class="tree-file">Header.jsx</span>                 <span class="tree-comment"># টপ বার (কয়েন ব্যালেন্স, স্ট্রিক ও ডিভাইস ফ্রেম টগল)</span>
+│   │   ├── <span class="tree-file">NotificationToast.jsx</span>      <span class="tree-comment"># গ্লোবাল সাকসেস/অ্যালার্ট টোস্ট ব্যানার</span>
+│   │   └── <span class="tree-file">RedemptionModal.jsx</span>        <span class="tree-comment"># কয়েন দিয়ে শপ আইটেম রিডেম্পশন ডায়ালগ</span>
+│   ├── <span class="tree-folder">context/</span>                       <span class="tree-comment"># গ্লোবাল স্টেট ম্যানেজমেন্ট লেয়ার</span>
+│   │   └── <span class="tree-file">AppContext.jsx</span>             <span class="tree-comment"># পয়েন্টস, স্ট্রিক, একটিভ ট্যাব ও অডিও স্টেট</span>
+│   ├── <span class="tree-folder">data/</span>                          <span class="tree-comment"># স্ট্যাটিক ও মক ডেটাসেট</span>
+│   │   └── <span class="tree-file">mockData.js</span>                <span class="tree-comment"># ইউজার প্রোফাইল, কুইজ প্রশ্ন ও শপ ক্যাটালগ</span>
+│   ├── <span class="tree-folder">utils/</span>                         <span class="tree-comment"># হেল্পার ও ইউটিলিটি ফাংশনসমূহ</span>
+│   │   └── <span class="tree-file">audioEffects.js</span>            <span class="tree-comment"># ব্রাউজার সিন্থেসাইজড সাউন্ড এফেক্টস (Web Audio)</span>
+│   ├── <span class="tree-folder">views/</span>                         <span class="tree-comment"># অ্যাপের প্রধান ৫টি পেইজ বা স্ক্রিন</span>
+│   │   ├── <span class="tree-file">AITutorView.jsx</span>            <span class="tree-comment"># এআই টিউটর চ্যাট ইন্টারফেস ও ডাউট সলভার</span>
+│   │   ├── <span class="tree-file">DashboardView.jsx</span>          <span class="tree-comment"># হোম ড্যাশবোর্ড, ডেইলি টাস্ক ও লার্নিং মেট্রিক্স</span>
+│   │   ├── <span class="tree-file">KnowledgeVaultView.jsx</span>     <span class="tree-comment"># কোর্স রিসোর্স, পিডিএফ নোটস ও পডকাস্ট লাইব্রেরি</span>
+│   │   ├── <span class="tree-file">QuizArenaView.jsx</span>          <span class="tree-comment"># গ্যামিফাইড টাইমার কুইজ ও স্কোরবোর্ড</span>
+│   │   └── <span class="tree-file">SubscriptionStoreView.jsx</span>  <span class="tree-comment"># প্রো প্ল্যানস ও কয়েন রিওয়ার্ড স্টোর</span>
+│   ├── <span class="tree-file">App.jsx</span>                        <span class="tree-comment"># মেইন অ্যাপ লেআউট ও ভিউ রাউটার</span>
+│   ├── <span class="tree-file">index.css</span>                      <span class="tree-comment"># Tailwind ইমপোর্ট ও গ্লাস-মরফিজম সিএসএস</span>
+│   └── <span class="tree-file">main.jsx</span>                       <span class="tree-comment"># রিঅ্যাক্ট ডম ইনিশিয়ালাইজার</span>
+├── <span class="tree-file">index.html</span>                         <span class="tree-comment"># সিঙ্গেল পেইজ অ্যাপ্লিকেশন রুট এইচটিএমএল</span>
+├── <span class="tree-file">package.json</span>                       <span class="tree-comment"># এনপিএম প্যাকেজ কনফিগারেশন ও স্ক্রিপ্টস</span>
+├── <span class="tree-file">package-lock.json</span>                  <span class="tree-comment"># ডিপেনডেন্সি লকফাইল</span>
+└── <span class="tree-file">vite.config.js</span>                     <span class="tree-comment"># Vite বান্ডলার কনফিগারেশন</span>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- ৩. প্রধান ভিউজ (Core Views) এর বিশদ বিবরণ -->
+  <div class="section-title">৩. প্রধান ভিউজ (Core Views Breakdown)</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 28%;">ভিউ ফাইল</th>
+        <th style="width: 18%;">ট্যাব আইডি</th>
+        <th>মূল দায়িত্ব ও ফিচারসমূহ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="file-tag">DashboardView.jsx</span></td>
+        <td><code>dashboard</code></td>
+        <td>
+          • ইউজারের দৈনিক টার্গেট এবং কমপ্লিশন প্রগ্রেস বার।<br>
+          • কারেন্ট স্ট্রিক (Streak), লার্নিং টাইম ও আর্ন করা জেন কয়েন প্রদর্শন।<br>
+          • "Quick Action" বাটন যার মাধ্যমে সরাসরি কুইজ বা এআই টিউটরে জাম্প করা যায়।
+        </td>
+      </tr>
+      <tr>
+        <td><span class="file-tag">AITutorView.jsx</span></td>
+        <td><code>tutor</code></td>
+        <td>
+          • পারসোনালাইজড এআই টিউটর চ্যাট ইন্টারফেস।<br>
+          • ফিজিক্স, কেমিস্ট্রি, ম্যাথ ইত্যাদি বিষয়ের জটিল থিওরি ও অংক ধাপে ধাপে সমাধান।<br>
+          • কুইক প্রম্পট সাজেশন (যেমন: <em>"Explain Quantum Tunneling"</em>, <em>"Derive Quadratic Formula"</em>)।
+        </td>
+      </tr>
+      <tr>
+        <td><span class="file-tag">QuizArenaView.jsx</span></td>
+        <td><code>quiz</code></td>
+        <td>
+          • রিয়েলটাইম টাইমার ভিত্তিক ইন্টারঅ্যাক্টিভ কুইজ ইঞ্জিন।<br>
+          • প্রতিটি সঠিক/ভুল উত্তরে লাইভ অডিও ফিডব্যাক ও পয়েন্ট ক্যালকুলেশন।<br>
+          • কুইজ শেষে কনফেটি ব্লাস্ট এবং পারফরম্যান্স রিক্যাপ অ্যানালাইসিস।
+        </td>
+      </tr>
+      <tr>
+        <td><span class="file-tag">KnowledgeVaultView.jsx</span></td>
+        <td><code>vault</code></td>
+        <td>
+          • ফর্মুলা শিট, চ্যাপ্টার সামারি ও হাইলাইট করা নোটসের সংকলন।<br>
+          • অডিও পডকাস্ট লিসেনিং সুবিধা (অডিও মডাল ওপেন হয়)।<br>
+          • ওয়ান-ক্লিক চিট-শীট ওপেনিং এবং রিভিশন গাইড।
+        </td>
+      </tr>
+      <tr>
+        <td><span class="file-tag">SubscriptionStoreView.jsx</span></td>
+        <td><code>store</code></td>
+        <td>
+          • এডু জিনিয়াস প্রো এবং আল্টিমেট সাবস্ক্রিপশন টায়ার।<br>
+          • লার্নিং অ্যাক্টিভিটি থেকে অর্জিত জেন কয়েন (GenCoins) খরচ করে এক্সক্লুসিভ স্টিকার, কুপন বা বুক ভাউচার রিডিম করার মার্কেটপ্লেস।
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ৪. কম্পোনেন্ট ও মডালসমূহ -->
+  <div class="section-title">৪. রিইউজেবল কম্পোনেন্টসমূহ (Reusable Components & Modals)</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 28%;">কম্পোনেন্ট</th>
+        <th style="width: 22%;">ফাংশনালিটি</th>
+        <th>বর্ণনা</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="file-tag">Header.jsx</span></td>
+        <td>নেভিগেশন হেডার</td>
+        <td>অ্যাপ লোগো, মোট অর্জিত কয়েন, সক্রিয় দিনের স্ট্রিক এবং ডেক্সটপ/মোবাইল ফ্রেম টগল বাটন ধারণ করে।</td>
+      </tr>
+      <tr>
+        <td><span class="file-tag">BottomNavigation.jsx</span></td>
+        <td>বটম বার</td>
+        <td>মোবাইল-ফার্স্ট ৫টি প্রধান ট্যাবের (Home, AI Tutor, Quiz, Vault, Store) মাঝে সুইচিং হ্যান্ডেল করে।</td>
+      </tr>
+      <tr>
+        <td><span class="file-tag">AudioPodcastModal.jsx</span></td>
+        <td>অডিও পডকাস্ট মডাল</td>
+        <td>এআই-জেনারেটেড অডিও লেকচার প্লে, পজ, টাইম স্ক্র্যাবার এবং স্পিড কন্ট্রোল সমর্থন করে।</td>
+      </tr>
+      <tr>
+        <td><span class="file-tag">CheatSheetModal.jsx</span></td>
+        <td>রিভিশন মডাল</td>
+        <td>যেকোনো বিষয়ের দ্রুত সূত্র ও কনসেপ্ট রিভিশন দেওয়ার পূর্ণাঙ্গ পপআপ কার্ড।</td>
+      </tr>
+      <tr>
+        <td><span class="file-tag">RedemptionModal.jsx</span></td>
+        <td>রিওয়ার্ড কনফার্মেশন</td>
+        <td>ইউজারের জেন কয়েন কেটে রিওয়ার্ড প্রসেস ও সাকসেস মেসেজ নিশ্চিত করে।</td>
+      </tr>
+      <tr>
+        <td><span class="file-tag">NotificationToast.jsx</span></td>
+        <td>নোটিফিকেশন ব্যানার</td>
+        <td>কয়েন অর্জন, কুইজ সাবমিশন বা এরর মেসেজ স্ক্রিনের উপরে সুন্দর অ্যানিমেশনে ভাসিয়ে তোলে।</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ৫. স্টেট ম্যানেজমেন্ট ও ইউটিলিটি -->
+  <div class="section-title">৫. স্টেট ম্যানেজমেন্ট ও ইউটিলিটি লেয়ার</div>
+  <div class="card">
+    <div style="font-weight: 600; font-size: 14px; color: #4338ca; margin-bottom: 6px;">
+      AppContext.jsx (React Context API)
+    </div>
+    <p style="margin: 0 0 10px 0; color: #475569;">
+      প্রজেক্টটিতে আলাদা জটিল স্টেট ম্যানেজমেন্ট লাইব্রেরি (যেমন Redux) ছাড়াই রিঅ্যাক্ট-এর নেটিভ <code>createContext</code> ও <code>useContext</code> ব্যবহার করা হয়েছে।
+    </p>
+    <ul style="margin: 0; padding-left: 20px; color: #334155;">
+      <li><strong>activeTab:</strong> বর্তমান সক্রিয় ভিউ (dashboard | tutor | quiz | vault | store) ট্র্যাক করে।</li>
+      <li><strong>userStats:</strong> ইউজারের লেভেল, এক্সপি (XP), কয়েন ব্যালেন্স ও স্ট্রিক সংরক্ষণ করে।</li>
+      <li><strong>activePodcast / activeCheatSheet:</strong> গ্লোবাল মডাল খোলার স্টেট নিয়ন্ত্রণ করে।</li>
+      <li><strong>toastNotification:</strong> স্ক্রিনে ক্ষণস্থায়ী সাকসেস মেসেজ ট্রিগার করে।</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-weight: 600; font-size: 14px; color: #047857; margin-bottom: 6px;">
+      audioEffects.js (Web Audio Synthesizer)
+    </div>
+    <p style="margin: 0 0 10px 0; color: #475569;">
+      কোনো ভারী এক্সটারনাল অডিও ফাইল লোড না করে সরাসরি ব্রাউজারের <code>AudioContext</code> ব্যবহার করে ক্রিস্প সাউন্ড তৈরি করে:
+    </p>
+    <ul style="margin: 0; padding-left: 20px; color: #334155;">
+      <li><code>playClickSound()</code> - বাটন ও মেনু ইন্টারঅ্যাকশন সাউন্ড।</li>
+      <li><code>playCorrectAnswerSound()</code> - কুইজে সঠিক উত্তরের সুমধুর হারমোনিক টোন।</li>
+      <li><code>playWrongAnswerSound()</code> - ভুল উত্তরের মৃদু সতর্কবার্তা সাউন্ড।</li>
+      <li><code>playSuccessFanfare()</code> - কুইজ সমাপ্তি বা রিওয়ার্ড আনলক করার সেলিব্রেশন ট্রাম্পেট।</li>
+    </ul>
+  </div>
+
+  <!-- ৬. প্রজেক্ট রান করার নির্দেশিকা -->
+  <div class="section-title">৬. প্রজেক্ট চালানোর নিয়মাবলী (How to Run)</div>
+  <div class="card">
+    <div class="flow-step">
+      <div class="flow-num">১</div>
+      <div class="flow-content">
+        <div class="flow-title">ডিপেনডেন্সি ইন্সটল করা</div>
+        <div class="flow-desc">টার্মিনালে কমান্ড দিন: <code style="background:#e2e8f0; padding:2px 6px; border-radius:4px;">npm install</code></div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">২</div>
+      <div class="flow-content">
+        <div class="flow-title">ডেভেলপমেন্ট সার্ভার স্টার্ট করা</div>
+        <div class="flow-desc">কমান্ড রান করুন: <code style="background:#e2e8f0; padding:2px 6px; border-radius:4px;">npm run dev</code> (লোকালহোস্টে অ্যাপ্লিকেশনটি চালু হবে)</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">৩</div>
+      <div class="flow-content">
+        <div class="flow-title">প্রোডাকশন বিল্ড তৈরি করা</div>
+        <div class="flow-desc">বিল্ড জেনারেট করতে: <code style="background:#e2e8f0; padding:2px 6px; border-radius:4px;">npm run build</code> (ফলাফল হিসেবে <span class="file-tag">dist/</span> ফোল্ডারে অপ্টিমাইজড কোড তৈরি হবে)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    EduGenius AI Platform &copy; 2026 • Full Architectural & Technical Specification
+  </div>
+
+</body>
+</html>
