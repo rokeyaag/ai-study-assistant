@@ -81,3 +81,95 @@
   position: relative;
   background-color: #ffffff;
 }
+
+
+/* Animated Background & Mesh Glow */
+@keyframes floatOrb1 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(45px, -35px) scale(1.15);
+  }
+  66% {
+    transform: translate(-35px, 25px) scale(0.92);
+  }
+}
+
+@keyframes floatOrb2 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(-40px, 35px) scale(1.1);
+  }
+  66% {
+    transform: translate(30px, -25px) scale(0.95);
+  }
+}
+
+@keyframes floatOrb3 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(25px, 30px) scale(1.18);
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes meshWave {
+  0%, 100% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+}
+
+.animate-float-1 {
+  animation: floatOrb1 15s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: floatOrb2 18s ease-in-out infinite;
+}
+
+.animate-float-3 {
+  animation: floatOrb3 12s ease-in-out infinite;
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradientShift 5s ease infinite;
+}
+
+/* Subtle Interactive Background Grid & Dot Matrix */
+.bg-animated-mesh {
+  background: 
+    radial-gradient(circle at 15% 15%, rgba(245, 158, 11, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 25%, rgba(244, 63, 94, 0.07) 0%, transparent 45%),
+    radial-gradient(circle at 50% 85%, rgba(245, 158, 11, 0.06) 0%, transparent 50%),
+    linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  background-size: 150% 150%;
+  animation: meshWave 16s ease-in-out infinite;
+}
+
+.bg-tech-dots {
+  background-image: 
+    radial-gradient(rgba(245, 158, 11, 0.12) 1.2px, transparent 1.2px),
+    radial-gradient(rgba(244, 63, 94, 0.08) 1.2px, transparent 1.2px);
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
+}

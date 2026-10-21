@@ -9,7 +9,9 @@ export const Header = ({ isMobileFrame, setIsMobileFrame }) => {
   const isPro = user.subscription.tier === 'pro';
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-xl border-b border-slate-200/80 px-4 py-3 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-xl border-b border-slate-200/80 px-4 py-3 shadow-[0_1px_3px_rgba(0,0,0,0.03)] relative overflow-hidden">
+      {/* Animated Subtle Ambient Top Glow Line */}
+      <div className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-rose-500 via-amber-400 to-rose-500 animate-gradient-shift"></div>
       <div className="max-w-4xl mx-auto flex items-center justify-between gap-3">
         {/* Brand / Logo */}
         <div 
