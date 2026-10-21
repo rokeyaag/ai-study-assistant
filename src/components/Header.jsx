@@ -15,8 +15,17 @@ export const Header = ({ isMobileFrame, setIsMobileFrame }) => {
       <div className="absolute -top-12 -left-12 w-48 h-48 bg-amber-400/15 rounded-full blur-2xl animate-float-1 pointer-events-none"></div>
       <div className="absolute -top-12 right-1/4 w-48 h-48 bg-rose-500/15 rounded-full blur-2xl animate-float-2 pointer-events-none"></div>
 
-      {/* Animated Flowing Bottom Border Accent */}
-      <div className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-rose-500 via-amber-400 to-rose-500 animate-gradient-shift"></div>
+      {/* Running High-Tech Horizontal Energy Beam */}
+      <div className="absolute bottom-0 left-0 right-0 h-[3px] overflow-hidden bg-slate-200/50 z-20 pointer-events-none">
+        {/* Subtle Ambient Underlying Gradient Track */}
+        <div className="absolute inset-0 bg-gradient-to-r from-rose-500/20 via-amber-400/25 to-rose-500/20"></div>
+
+        {/* Running Glowing Neon Laser Beam */}
+        <div className="absolute top-0 bottom-0 w-1/3 bg-gradient-to-r from-transparent via-amber-400 to-rose-500 animate-run-line shadow-[0_0_12px_#f59e0b,0_0_6px_#f43f5e]"></div>
+
+        {/* Running White Spark Core */}
+        <div className="absolute top-0 bottom-0 w-1/6 bg-gradient-to-r from-transparent via-white to-transparent animate-run-spark"></div>
+      </div>
 
       <div className="max-w-4xl mx-auto flex items-center justify-between gap-3 relative z-10">
         {/* Brand / Logo */}

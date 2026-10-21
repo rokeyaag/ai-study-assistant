@@ -98,12 +98,14 @@ export const DashboardView = () => {
           </div>
         </div>
 
-        {/* Daily Goal Bar */}
-        <div className="w-full bg-slate-100 rounded-full h-2.5 mt-4 overflow-hidden border border-slate-200">
+        {/* Daily Goal Bar with Running Shimmer */}
+        <div className="w-full bg-slate-100 rounded-full h-2.5 mt-4 overflow-hidden border border-slate-200 relative">
           <div
-            className="bg-gradient-to-r from-rose-500 via-amber-500 to-amber-400 h-full rounded-full transition-all duration-500 shadow-sm"
+            className="bg-gradient-to-r from-rose-500 via-amber-500 to-amber-400 h-full rounded-full transition-all duration-500 shadow-sm relative overflow-hidden"
             style={{ width: `${user.dailyGoalProgress}%` }}
-          ></div>
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-shimmer-sweep pointer-events-none"></div>
+          </div>
         </div>
       </div>
 

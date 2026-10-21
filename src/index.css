@@ -202,3 +202,32 @@
 .animate-pulse-soft {
   animation: pulseGlowSoft 3s ease-in-out infinite;
 }
+
+
+/* Running Horizontal Laser Beam */
+@keyframes runLineBeam {
+  0% {
+    left: -40%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes runLineSpark {
+  0% {
+    left: -20%;
+  }
+  100% {
+    left: 110%;
+  }
+}
+
+.animate-run-line {
+  animation: runLineBeam 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-run-spark {
+  animation: runLineSpark 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation-delay: 0.12s;
+}
