@@ -121,7 +121,7 @@ export const ProfileView = () => {
     setActiveSection('profile');
   };
 
-  const isPro = user.subscription.tier === 'pro';
+  const isPro = user?.subscription?.tier === 'pro';
   const studentIdNumber = user.id ? user.id.replace('student_', '').slice(-6) : '829410';
 
   return (

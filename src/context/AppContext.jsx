@@ -7,13 +7,36 @@ const AppContext = createContext(null);
 
 export const AppProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
-    const saved = localStorage.getItem('aistudy_user_v2');
-    return saved ? JSON.parse(saved) : INITIAL_USER;
+    try {
+      const saved = localStorage.getItem('aistudy_user_v2');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return {
+          ...INITIAL_USER,
+          ...parsed,
+          subscription: {
+            ...INITIAL_USER.subscription,
+            ...(parsed.subscription || {})
+          }
+        };
+      }
+    } catch (e) {
+      console.warn("Could not parse saved user, falling back to initial", e);
+    }
+    return INITIAL_USER;
   });
 
   const [vaultNotes, setVaultNotes] = useState(() => {
-    const saved = localStorage.getItem('aistudy_vault_v2');
-    return saved ? JSON.parse(saved) : INITIAL_VAULT_NOTES;
+    try {
+      const saved = localStorage.getItem('aistudy_vault_v2');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch (e) {
+      console.warn("Could not parse saved vault notes, falling back to initial", e);
+    }
+    return INITIAL_VAULT_NOTES;
   });
 
   const [activeTab, setActiveTab] = useState('dashboard');

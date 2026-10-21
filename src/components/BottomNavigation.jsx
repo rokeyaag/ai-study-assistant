@@ -50,7 +50,7 @@ export const BottomNavigation = () => {
       id: 'store',
       label: 'Store',
       icon: Gem,
-      isPro: user.subscription.tier === 'pro',
+      isPro: user?.subscription?.tier === 'pro',
       activeBg: 'bg-gradient-to-r from-purple-600 via-purple-700 to-pink-600 text-white shadow-md shadow-purple-600/30',
       activeText: 'text-purple-600',
       activeDot: 'bg-purple-600',

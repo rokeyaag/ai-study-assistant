@@ -11,7 +11,7 @@ export const SubscriptionStoreView = () => {
   const [copiedReferral, setCopiedReferral] = useState(false);
   const [dailyClaimed, setDailyClaimed] = useState(false);
 
-  const isPro = user.subscription.tier === 'pro';
+  const isPro = user?.subscription?.tier === 'pro';
   const progressPercent = Math.min(100, Math.round((user.points / 100) * 100));
 
   const handleCopyReferral = () => {
