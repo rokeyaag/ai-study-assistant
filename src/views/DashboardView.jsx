@@ -292,29 +292,14 @@ export const DashboardView = () => {
 
       {/* AI Performance & Weakness Analytics */}
       <div className="bg-white border border-slate-200 hover:border-amber-300/80 rounded-3xl p-5 shadow-sm hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-300 hover:-translate-y-0.5">
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+        <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <TrendingUp className="w-5 h-5 text-amber-600" />
             <h4 className="font-black text-slate-900 text-sm sm:text-base">
               AI Subject Proficiency & Weakness Analytics
             </h4>
           </div>
-          <div className="flex items-center gap-2.5">
-            <span className="hidden sm:inline-block text-xs text-amber-700 font-bold bg-amber-50 px-2.5 py-1 rounded-lg border border-amber-200/60">
-              Weekly Diagnostics
-            </span>
-            <button
-              onClick={() => {
-                soundManager.playClick();
-                setActiveTab('profile');
-              }}
-              className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-white font-black text-xs shadow-md shadow-amber-500/20 flex items-center gap-1.5 shrink-0 cursor-pointer transition-all hover:scale-105 active:scale-95"
-              title="Add or manage subjects in your profile"
-            >
-              <Plus className="w-3.5 h-3.5 stroke-[2.8]" />
-              <span>+ Add a New Subject</span>
-            </button>
-          </div>
+          <span className="text-xs text-amber-700 font-bold">Weekly Diagnostics</span>
         </div>
 
         <div className="space-y-3">
@@ -343,20 +328,6 @@ export const DashboardView = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Right side + Add a New Subject action button */}
-        <div className="pt-3 flex justify-end">
-          <button
-            onClick={() => {
-              soundManager.playClick();
-              setActiveTab('profile');
-            }}
-            className="w-full sm:w-auto px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-white font-black text-xs shadow-md shadow-amber-500/20 flex items-center justify-center gap-1.5 cursor-pointer transition-all hover:scale-105 active:scale-95"
-          >
-            <Plus className="w-4 h-4 stroke-[2.8]" />
-            <span>+ Add a New Subject</span>
-          </button>
         </div>
       </div>
     </div>
