@@ -14,6 +14,9 @@ export const AppProvider = ({ children }) => {
         return {
           ...INITIAL_USER,
           ...parsed,
+          subjects: Array.isArray(parsed.subjects) && parsed.subjects.length > 0 
+            ? parsed.subjects 
+            : INITIAL_USER.subjects,
           subscription: {
             ...INITIAL_USER.subscription,
             ...(parsed.subscription || {})
@@ -180,6 +183,44 @@ export const AppProvider = ({ children }) => {
     soundManager.playSuccess();
   };
 
+  const addSubject = (newSubject) => {
+    if (!newSubject || !newSubject.trim()) return false;
+    const clean = newSubject.trim();
+    let alreadyExists = false;
+
+    setUser(prev => {
+      const current = prev.subjects || INITIAL_USER.subjects || [];
+      if (current.some(s => s.toLowerCase() === clean.toLowerCase())) {
+        alreadyExists = true;
+        return prev;
+      }
+      return {
+        ...prev,
+        subjects: [...current, clean]
+      };
+    });
+
+    if (alreadyExists) {
+      notify('Subject Exists', `"${clean}" is already in your curriculum list.`, 'info');
+      return false;
+    } else {
+      soundManager.playReward();
+      notify('📚 Subject Added!', `"${clean}" added to your study curriculum.`, 'success');
+      return true;
+    }
+  };
+
+  const removeSubject = (subjectToRemove) => {
+    setUser(prev => ({
+      ...prev,
+      subjects: (prev.subjects || INITIAL_USER.subjects || []).filter(
+        s => s.toLowerCase() !== subjectToRemove.toLowerCase()
+      )
+    }));
+    soundManager.playClick();
+    notify('Subject Removed', `"${subjectToRemove}" was removed from your curriculum.`, 'info');
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -206,6 +247,8 @@ export const AppProvider = ({ children }) => {
         setIsProfileModalOpen,
         updateUserProfile,
         registerNewStudent,
+        addSubject,
+        removeSubject,
         isMobileFrame,
         setIsMobileFrame,
         isCompact,

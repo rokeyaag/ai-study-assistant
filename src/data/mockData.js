@@ -13,6 +13,13 @@ export const INITIAL_USER = {
     trialDaysLeft: 5,
     proExpiresAt: null
   },
+  subjects: [
+    "Physics",
+    "Chemistry",
+    "Higher Mathematics",
+    "Biology",
+    "ICT & Computer Science"
+  ],
   dailyGoalProgress: 75, // percent
   weeklyStudyHours: [3.5, 4.2, 5.0, 3.8, 6.1, 4.5, 5.8],
   weaknessAreas: [
