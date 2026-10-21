@@ -99,7 +99,7 @@ graph TD
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/ai-study-assistant.git
+git clone https://github.com/rokeyaag/ai-study-assistant.git
 cd ai-study-assistant
 ```
 
@@ -122,6 +122,57 @@ The optimized production bundle will be generated in the `dist/` directory.
 
 ---
 
+## 📁 Project Structure & Codebase Architecture
+
+```text
+ai-study-assistant/
+├── public/
+│   ├── favicon.ico                   # Application favicon
+│   ├── logo.png                      # High-resolution mascot logo
+│   └── mock_scans/                   # STEM textbook scan demonstration images
+│
+├── src/
+│   ├── components/                   # Reusable UI & Modal Components
+│   │   ├── AudioPodcastModal.jsx     # 3-minute AI audio podcast player with waveforms
+│   │   ├── BottomNavigation.jsx      # Sticky bottom navigation bar with active badges
+│   │   ├── CheatSheetModal.jsx       # Quick revision printable formula & cheat-sheet viewer
+│   │   ├── Header.jsx                # Sticky frosted-glass header with 3D spinning mascot
+│   │   ├── NotificationToast.jsx     # Floating animated notification toast provider
+│   │   ├── RedemptionModal.jsx       # Confetti celebration modal for Pro subscription unlock
+│   │   └── StudentProfileModal.jsx   # Quick modal for Digital Scholar ID, avatar & registration
+│   │
+│   ├── context/                      # Global State & Persistence
+│   │   └── AppContext.jsx            # Unified React context for User, Subjects, Vault & Audio
+│   │
+│   ├── data/                         # Educational Knowledge & Mock Data
+│   │   └── mockData.js               # Initial curriculum data, STEM MCQs, and weakness analytics
+│   │
+│   ├── services/                     # External Intelligence & APIs
+│   │   └── aiService.js              # Google Gemini 1.5 Flash Vision & Socratic inference
+│   │
+│   ├── utils/                        # Utility Libraries & Synthesizers
+│   │   ├── audioEffects.js           # Web Audio API procedural sound engine (ticking, rewards)
+│   │   └── imageHelper.js            # Client-side canvas image optimizer & profile avatar compressor
+│   │
+│   ├── views/                        # Core Application View Screens
+│   │   ├── AITutorView.jsx           # Multimodal textbook OCR scanner & Socratic tutor chat
+│   │   ├── DashboardView.jsx         # Scholar summary, Pomodoro timer & subject analytics
+│   │   ├── KnowledgeVaultView.jsx    # Digital notebook with inline subject manager & podcasts
+│   │   ├── ProfileView.jsx           # Complete student profile, digital ID & registration form
+│   │   ├── QuizArenaView.jsx         # Gamified MCQ quiz challenges with subject filtering
+│   │   └── SubscriptionStoreView.jsx # Points-to-Pro redemption shop & wallet
+│   │
+│   ├── App.jsx                       # Master layout, animated aurora background & viewport switcher
+│   ├── index.css                     # Custom Tailwind CSS utilities, glassmorphism & 3D animations
+│   └── main.jsx                      # Application entry point
+│
+├── package.json                      # Project dependencies and npm scripts
+├── vite.config.js                    # Vite configuration
+└── README.md                         # Comprehensive documentation & architecture guide
+```
+
+---
+
 ## 🔑 Optional Gemini API Key Configuration
 AI Study Assistant includes built-in smart educational presets that work out of the box with zero setup. To test custom live images and textbook scans:
 1. Open the **AI Tutor** tab.
@@ -135,7 +186,7 @@ AI Study Assistant includes built-in smart educational presets that work out of 
 
 1. Push your repository to GitHub.
 2. Go to [Vercel](https://vercel.com/) and click **"Add New Project"**.
-3. Import your `ai-study-assistant` repository.
+3. Import your `ai-study-assistant` repository (`https://github.com/rokeyaag/ai-study-assistant`).
 4. Framework preset: **Vite** (auto-detected).
 5. Click **"Deploy"** — your live link will be ready in under 60 seconds!
 
@@ -143,5 +194,6 @@ AI Study Assistant includes built-in smart educational presets that work out of 
 
 ## 👥 Hackathon Submission Details
 - **Project Name**: AI Study Assistant
-- **Category**: Education, AI for Social Good, Gamification
+- **GitHub Repository**: [https://github.com/rokeyaag/ai-study-assistant](https://github.com/rokeyaag/ai-study-assistant)
+- **Category**: Education, AI for Social Good, Gamified Learning
 - **License**: MIT License
