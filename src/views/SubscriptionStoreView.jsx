@@ -7,7 +7,7 @@ import {
 import { soundManager } from '../utils/audioEffects';
 
 export const SubscriptionStoreView = () => {
-  const { user, redeemPointsForPro, addPoints, notify } = useApp();
+  const { user, redeemPointsForPro, addPoints, notify, isCompact } = useApp();
   const [copiedReferral, setCopiedReferral] = useState(false);
   const [dailyClaimed, setDailyClaimed] = useState(false);
 
@@ -35,7 +35,9 @@ export const SubscriptionStoreView = () => {
         <div className="absolute -top-16 -right-16 w-44 h-44 bg-amber-400/10 rounded-full blur-3xl"></div>
         <div className="absolute -bottom-16 -left-16 w-44 h-44 bg-rose-500/10 rounded-full blur-3xl"></div>
 
-        <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className={`relative z-10 flex items-start justify-between gap-5 ${
+          isCompact ? "flex-col" : "flex-col md:flex-row md:items-center"
+        }`}>
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="px-3 py-1 rounded-full bg-amber-50 text-amber-800 text-xs font-black uppercase tracking-wider border border-amber-200 flex items-center gap-1.5">
@@ -91,7 +93,9 @@ export const SubscriptionStoreView = () => {
       </div>
 
       {/* Daily Claim & Invite Bonus Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className={`grid gap-4 ${
+        isCompact ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"
+      }`}>
         {/* Daily Login Reward */}
         <div className="bg-white border border-slate-200 hover:border-rose-400 rounded-3xl p-5 shadow-sm hover:shadow-xl hover:shadow-rose-500/15 hover:-translate-y-1.5 hover:bg-gradient-to-br hover:from-white hover:to-rose-50/20 transition-all duration-300 ease-out flex flex-col justify-between">
           <div>

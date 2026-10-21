@@ -14,8 +14,7 @@ import { KnowledgeVaultView } from './views/KnowledgeVaultView';
 import { SubscriptionStoreView } from './views/SubscriptionStoreView';
 
 const MainLayout = () => {
-  const { activeTab } = useApp();
-  const [isMobileFrame, setIsMobileFrame] = useState(false);
+  const { activeTab, isMobileFrame, setIsMobileFrame } = useApp();
 
   return (
     <div className={`min-h-screen relative overflow-x-hidden bg-[#0a0f1d] text-slate-900 flex flex-col justify-between transition-all ${

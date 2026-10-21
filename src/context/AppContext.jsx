@@ -22,6 +22,18 @@ export const AppProvider = ({ children }) => {
   const [activePodcastNote, setActivePodcastNote] = useState(null);
   const [cheatSheetNote, setCheatSheetNote] = useState(null);
   const [isRedemptionSuccessModalOpen, setIsRedemptionSuccessModalOpen] = useState(false);
+  const [isMobileFrame, setIsMobileFrame] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(typeof window !== 'undefined' ? window.innerWidth < 640 : false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 640);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const isCompact = isMobileFrame || isSmallScreen;
 
   // Persist changes to localStorage (using v2 key to refresh default state to English)
   useEffect(() => {
@@ -128,6 +140,10 @@ export const AppProvider = ({ children }) => {
         setCheatSheetNote,
         isRedemptionSuccessModalOpen,
         setIsRedemptionSuccessModalOpen,
+        isMobileFrame,
+        setIsMobileFrame,
+        isCompact,
+        isSmallScreen,
         SCAN_PRESETS,
         MOCK_QUIZ_QUESTIONS
       }}
