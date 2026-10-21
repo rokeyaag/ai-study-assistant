@@ -58,9 +58,11 @@ export const ProfileView = () => {
   const [activeSection, setActiveSection] = useState('profile'); // 'profile' | 'register'
   const [isUploading, setIsUploading] = useState(false);
 
-  // File input refs for uploading custom photos
+  // Input refs for uploading photos and focusing subject fields
   const profileFileInputRef = useRef(null);
   const regFileInputRef = useRef(null);
+  const subjectInputRef = useRef(null);
+  const regSubjectInputRef = useRef(null);
 
   // Edit Profile State
   const [name, setName] = useState(user.name);
@@ -567,27 +569,42 @@ export const ProfileView = () => {
                 </div>
               </div>
 
-              {/* Enrolled Study Subjects Section with Right-Side Add Button */}
-              <div className="p-4 rounded-2xl bg-amber-50/50 border border-amber-200/90 space-y-3">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+              {/* Enrolled Study Subjects Section with Right-Side +Add a New Subject Button */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-amber-50/50 border border-amber-200/90 space-y-3 shadow-xs">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-amber-200/70 pb-3">
                   <div>
                     <label className="block text-xs font-black text-slate-800 flex items-center gap-1.5">
-                      <BookOpen className="w-3.5 h-3.5 text-amber-600" />
+                      <BookOpen className="w-4 h-4 text-amber-600" />
                       <span>Enrolled Study Subjects (পাঠ্য বিষয়সমূহ)</span>
                       <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-amber-200 text-amber-900 border border-amber-300">
                         {subjectsList.length} Subjects
                       </span>
                     </label>
-                    <p className="text-[11px] text-slate-500 font-medium">
-                      Add the academic subjects you are preparing for exams
+                    <p className="text-[11px] text-slate-500 font-medium mt-0.5">
+                      Add academic subjects you are preparing for exams
                     </p>
                   </div>
+
+                  {/* RIGHT-SIDE BUTTON: + Add a New Subject */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      subjectInputRef.current?.focus();
+                      subjectInputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }}
+                    className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-white font-black text-xs shadow-md shadow-amber-500/20 flex items-center gap-1.5 shrink-0 cursor-pointer transition-all hover:scale-105 active:scale-95"
+                    title="Click to add a new subject"
+                  >
+                    <Plus className="w-3.5 h-3.5 stroke-[2.8]" />
+                    <span>+ Add a New Subject</span>
+                  </button>
                 </div>
 
                 {/* Input row with Right-Side ADD Button */}
                 <div className="flex items-center gap-2">
                   <div className="relative flex-1">
                     <input
+                      ref={subjectInputRef}
                       type="text"
                       value={newSubjectInput}
                       onChange={(e) => setNewSubjectInput(e.target.value)}
@@ -598,7 +615,7 @@ export const ProfileView = () => {
                         }
                       }}
                       placeholder="Type subject name (e.g. Higher Math, Chemistry, ICT, English, Biology)..."
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 text-slate-900 text-xs sm:text-sm font-bold bg-white shadow-xs"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-400/25 text-slate-900 text-xs sm:text-sm font-bold bg-white shadow-xs"
                     />
                   </div>
 
@@ -610,7 +627,7 @@ export const ProfileView = () => {
                     title="Click to add subject to your curriculum"
                   >
                     <Plus className="w-4 h-4 stroke-[2.5]" />
-                    <span>Add</span>
+                    <span>+ Add a New Subject</span>
                   </button>
                 </div>
 
@@ -810,24 +827,38 @@ export const ProfileView = () => {
               </div>
             </div>
 
-            {/* Registration Enrolled Subjects with Right-Side Add Option */}
-            <div className="p-4 rounded-2xl bg-rose-50/50 border border-rose-200/90 space-y-3">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+            {/* Registration Enrolled Subjects with Right-Side +Add a New Subject Button */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-rose-50/50 border border-rose-200/90 space-y-3 shadow-xs">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-rose-200/70 pb-3">
                 <div>
                   <label className="block text-xs font-black text-slate-800 flex items-center gap-1.5">
-                    <BookOpen className="w-3.5 h-3.5 text-rose-600" />
+                    <BookOpen className="w-4 h-4 text-rose-600" />
                     <span>Choose / Add Study Subjects ({regSubjectsList.length})</span>
                   </label>
-                  <p className="text-[11px] text-slate-500 font-medium">
+                  <p className="text-[11px] text-slate-500 font-medium mt-0.5">
                     Select or type custom subjects to add to your student profile
                   </p>
                 </div>
+
+                {/* RIGHT-SIDE BUTTON: + Add a New Subject */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    regSubjectInputRef.current?.focus();
+                    regSubjectInputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }}
+                  className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-rose-600 via-rose-500 to-amber-500 hover:from-rose-500 hover:to-amber-400 text-white font-black text-xs shadow-md shadow-rose-500/20 flex items-center gap-1.5 shrink-0 cursor-pointer transition-all hover:scale-105 active:scale-95"
+                >
+                  <Plus className="w-3.5 h-3.5 stroke-[2.8]" />
+                  <span>+ Add a New Subject</span>
+                </button>
               </div>
 
               {/* Input row with Right-Side ADD Button */}
               <div className="flex items-center gap-2">
                 <div className="relative flex-1">
                   <input
+                    ref={regSubjectInputRef}
                     type="text"
                     value={newRegSubjectInput}
                     onChange={(e) => setNewRegSubjectInput(e.target.value)}
@@ -849,7 +880,7 @@ export const ProfileView = () => {
                   className="px-4 sm:px-5 py-2.5 rounded-xl bg-gradient-to-r from-rose-600 via-rose-500 to-amber-500 hover:from-rose-500 hover:to-amber-400 text-white font-black text-xs sm:text-sm shadow-md shadow-rose-500/25 flex items-center gap-1.5 shrink-0 cursor-pointer transition-all active:scale-95"
                 >
                   <Plus className="w-4 h-4 stroke-[2.5]" />
-                  <span>Add</span>
+                  <span>+ Add a New Subject</span>
                 </button>
               </div>
 

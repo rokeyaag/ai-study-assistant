@@ -58,9 +58,11 @@ export const StudentProfileModal = () => {
   const [activeModalTab, setActiveModalTab] = useState('profile'); // 'profile' | 'register'
   const [isUploading, setIsUploading] = useState(false);
 
-  // File input refs for uploading custom photos
+  // File and input refs
   const profileFileInputRef = useRef(null);
   const regFileInputRef = useRef(null);
+  const subjectInputRef = useRef(null);
+  const regSubjectInputRef = useRef(null);
 
   // Profile Edit State
   const [name, setName] = useState(user.name);
@@ -520,9 +522,9 @@ export const StudentProfileModal = () => {
                   </div>
                 </div>
 
-                {/* Enrolled Study Subjects with Right-Side Add Option */}
-                <div className="p-3.5 rounded-2xl bg-amber-50/50 border border-amber-200/90 space-y-2.5">
-                  <div className="flex items-center justify-between">
+                {/* Enrolled Study Subjects with Right-Side +Add a New Subject Button */}
+                <div className="p-3.5 rounded-2xl bg-amber-50/50 border border-amber-200/90 space-y-2.5 shadow-xs">
+                  <div className="flex items-center justify-between gap-2 border-b border-amber-200/70 pb-2.5">
                     <div>
                       <label className="block text-xs font-black text-slate-800 flex items-center gap-1.5">
                         <BookOpen className="w-3.5 h-3.5 text-amber-600" />
@@ -530,12 +532,23 @@ export const StudentProfileModal = () => {
                       </label>
                       <span className="text-[10px] text-slate-500 font-medium">Add curriculum subjects you want to prepare</span>
                     </div>
+
+                    {/* RIGHT-SIDE BUTTON: + Add a New Subject */}
+                    <button
+                      type="button"
+                      onClick={() => subjectInputRef.current?.focus()}
+                      className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-white font-black text-xs shadow-xs flex items-center gap-1 shrink-0 cursor-pointer transition-all hover:scale-105 active:scale-95"
+                    >
+                      <Plus className="w-3.5 h-3.5 stroke-[2.8]" />
+                      <span>+ Add a New Subject</span>
+                    </button>
                   </div>
 
                   {/* Input row with Right-Side ADD Button */}
                   <div className="flex items-center gap-2">
                     <div className="relative flex-1">
                       <input
+                        ref={subjectInputRef}
                         type="text"
                         value={newSubjectInput}
                         onChange={(e) => setNewSubjectInput(e.target.value)}
@@ -557,7 +570,7 @@ export const StudentProfileModal = () => {
                       className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-xs shadow-md shadow-amber-500/25 flex items-center gap-1 shrink-0 cursor-pointer transition-all active:scale-95"
                     >
                       <Plus className="w-3.5 h-3.5 stroke-[2.5]" />
-                      <span>Add</span>
+                      <span>+ Add a New Subject</span>
                     </button>
                   </div>
 
@@ -760,12 +773,23 @@ export const StudentProfileModal = () => {
                       </label>
                       <span className="text-[10px] text-slate-500 font-medium">Add curriculum subjects you want to prepare</span>
                     </div>
+
+                    {/* RIGHT-SIDE BUTTON: + Add a New Subject */}
+                    <button
+                      type="button"
+                      onClick={() => regSubjectInputRef.current?.focus()}
+                      className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-rose-600 to-amber-500 hover:from-rose-500 hover:to-amber-400 text-white font-black text-xs shadow-xs flex items-center gap-1 shrink-0 cursor-pointer transition-all hover:scale-105 active:scale-95"
+                    >
+                      <Plus className="w-3.5 h-3.5 stroke-[2.8]" />
+                      <span>+ Add a New Subject</span>
+                    </button>
                   </div>
 
                   {/* Input row with Right-Side ADD Button */}
                   <div className="flex items-center gap-2">
                     <div className="relative flex-1">
                       <input
+                        ref={regSubjectInputRef}
                         type="text"
                         value={newRegSubjectInput}
                         onChange={(e) => setNewRegSubjectInput(e.target.value)}
@@ -787,7 +811,7 @@ export const StudentProfileModal = () => {
                       className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-rose-600 to-amber-500 hover:from-rose-500 hover:to-amber-400 text-white font-black text-xs shadow-md shadow-rose-500/25 flex items-center gap-1 shrink-0 cursor-pointer transition-all active:scale-95"
                     >
                       <Plus className="w-3.5 h-3.5 stroke-[2.5]" />
-                      <span>Add</span>
+                      <span>+ Add a New Subject</span>
                     </button>
                   </div>
 
