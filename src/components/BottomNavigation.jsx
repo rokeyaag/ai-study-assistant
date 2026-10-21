@@ -59,7 +59,7 @@ export const BottomNavigation = () => {
   ];
 
   return (
-    <nav className="w-full mt-auto bg-white/95 backdrop-blur-2xl border-t border-slate-200/80 px-2 py-3 shadow-[0_-4px_25px_rgba(0,0,0,0.03)] relative z-20">
+    <nav className="w-full bg-white/95 backdrop-blur-2xl border-t border-slate-200/80 px-2 py-2 shadow-[0_-4px_25px_rgba(0,0,0,0.03)]">
       <div className="max-w-md mx-auto grid grid-cols-5 items-center justify-items-center gap-1">
         {tabs.map((tab) => {
           const Icon = tab.icon;
