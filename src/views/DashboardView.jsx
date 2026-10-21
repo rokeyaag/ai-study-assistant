@@ -71,7 +71,7 @@ export const DashboardView = () => {
       <div 
         onClick={() => {
           soundManager.playClick();
-          setIsProfileModalOpen(true);
+          setActiveTab('profile');
         }}
         title="Click to view & edit student profile"
         className="relative overflow-hidden rounded-3xl bg-white border border-slate-200/90 hover:border-amber-300/80 p-5 shadow-sm hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-300 hover:-translate-y-0.5 cursor-pointer group"

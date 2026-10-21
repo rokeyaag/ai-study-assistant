@@ -104,7 +104,7 @@ export const Header = () => {
           <button
             onClick={() => {
               soundManager.playClick();
-              setIsProfileModalOpen(true);
+              setActiveTab('profile');
             }}
             title={`View & Edit Profile (${user.name})`}
             className="relative rounded-full ring-2 ring-amber-400 hover:ring-rose-500 hover:scale-105 transition-all shrink-0 cursor-pointer p-0.5 active:scale-95"

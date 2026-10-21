@@ -15,6 +15,7 @@ import { AITutorView } from './views/AITutorView';
 import { QuizArenaView } from './views/QuizArenaView';
 import { KnowledgeVaultView } from './views/KnowledgeVaultView';
 import { SubscriptionStoreView } from './views/SubscriptionStoreView';
+import { ProfileView } from './views/ProfileView';
 
 const MainLayout = () => {
   const { activeTab, isMobileFrame, setIsMobileFrame } = useApp();
@@ -64,6 +65,7 @@ const MainLayout = () => {
           {activeTab === 'quiz' && <QuizArenaView />}
           {activeTab === 'vault' && <KnowledgeVaultView />}
           {activeTab === 'store' && <SubscriptionStoreView />}
+          {activeTab === 'profile' && <ProfileView />}
         </main>
 
         {/* Bottom Tab Navigation: Frozen at Bottom */}

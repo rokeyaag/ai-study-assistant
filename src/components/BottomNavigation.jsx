@@ -1,6 +1,6 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
-import { LayoutDashboard, Sparkles, Trophy, BookOpen, Gem } from 'lucide-react';
+import { LayoutDashboard, Sparkles, Trophy, BookOpen, Gem, User } from 'lucide-react';
 import { soundManager } from '../utils/audioEffects';
 
 export const BottomNavigation = () => {
@@ -48,19 +48,28 @@ export const BottomNavigation = () => {
     },
     {
       id: 'store',
-      label: 'Pro Store',
+      label: 'Store',
       icon: Gem,
       isPro: user.subscription.tier === 'pro',
       activeBg: 'bg-gradient-to-r from-purple-600 via-purple-700 to-pink-600 text-white shadow-md shadow-purple-600/30',
       activeText: 'text-purple-600',
       activeDot: 'bg-purple-600',
       hoverText: 'hover:text-purple-600 hover:bg-purple-50/70'
+    },
+    {
+      id: 'profile',
+      label: 'Profile',
+      icon: User,
+      activeBg: 'bg-gradient-to-r from-emerald-500 via-teal-600 to-cyan-600 text-white shadow-md shadow-teal-500/30',
+      activeText: 'text-teal-600',
+      activeDot: 'bg-teal-500',
+      hoverText: 'hover:text-teal-600 hover:bg-teal-50/70'
     }
   ];
 
   return (
-    <nav className="w-full bg-white/95 backdrop-blur-2xl border-t border-slate-200/80 px-2 py-2 shadow-[0_-4px_25px_rgba(0,0,0,0.03)]">
-      <div className="max-w-md mx-auto grid grid-cols-5 items-center justify-items-center gap-1">
+    <nav className="w-full bg-white/95 backdrop-blur-2xl border-t border-slate-200/80 px-1 sm:px-2 py-1.5 sm:py-2 shadow-[0_-4px_25px_rgba(0,0,0,0.03)]">
+      <div className="max-w-lg mx-auto grid grid-cols-6 items-center justify-items-center gap-0.5 sm:gap-1">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
