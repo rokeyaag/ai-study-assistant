@@ -8,7 +8,7 @@ import {
 import { soundManager } from '../utils/audioEffects';
 
 export const DashboardView = () => {
-  const { user, setActiveTab, addPoints, vaultNotes } = useApp();
+  const { user, setActiveTab, addPoints, vaultNotes, setIsProfileModalOpen } = useApp();
 
   // Pomodoro Focus Timer State
   const [pomodoroSeconds, setPomodoroSeconds] = useState(25 * 60);
@@ -67,23 +67,38 @@ export const DashboardView = () => {
 
   return (
     <div className="space-y-5 pb-6 animate-in fade-in duration-300">
-      {/* Student Welcome Banner: Crisp White with Subtle Gold/Rose Accents */}
-      <div className="relative overflow-hidden rounded-3xl bg-white border border-slate-200/90 hover:border-amber-300/80 p-5 shadow-sm hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-300 hover:-translate-y-0.5">
+      {/* Student Welcome Banner: Click to open & edit Profile */}
+      <div 
+        onClick={() => {
+          soundManager.playClick();
+          setIsProfileModalOpen(true);
+        }}
+        title="Click to view & edit student profile"
+        className="relative overflow-hidden rounded-3xl bg-white border border-slate-200/90 hover:border-amber-300/80 p-5 shadow-sm hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-300 hover:-translate-y-0.5 cursor-pointer group"
+      >
         <div className="absolute -top-12 -right-12 w-36 h-36 bg-amber-400/10 rounded-full blur-2xl"></div>
         <div className="absolute -bottom-12 -left-12 w-36 h-36 bg-rose-500/10 rounded-full blur-2xl"></div>
         
         <div className="flex items-center justify-between relative z-10">
           <div className="flex items-center gap-3.5">
-            <img
-              src={user.avatar}
-              alt="Avatar"
-              className="w-12 h-12 rounded-2xl border-2 border-amber-400 object-cover shadow-sm"
-            />
+            <div className="relative">
+              <img
+                src={user.avatar}
+                alt="Avatar"
+                className="w-12 h-12 rounded-2xl border-2 border-amber-400 object-cover shadow-sm group-hover:scale-105 transition-transform"
+              />
+              <span className="absolute -bottom-1 -right-1 p-0.5 rounded-full bg-amber-500 text-white text-[9px] font-black">
+                ✏️
+              </span>
+            </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="font-black text-base sm:text-lg text-slate-900">
+                <h2 className="font-black text-base sm:text-lg text-slate-900 group-hover:text-amber-800 transition-colors">
                   Welcome back, {user.name.split(' ')[0]}! 👋
                 </h2>
+                <span className="hidden sm:inline-block px-2 py-0.5 text-[9px] font-bold rounded-full bg-slate-100 text-slate-600 border border-slate-200 group-hover:border-amber-300">
+                  Edit Profile
+                </span>
               </div>
               <p className="text-xs text-slate-500 font-medium">{user.grade} • {user.subjectStream}</p>
             </div>

@@ -4,7 +4,7 @@ import { Flame, Coins, Sparkles, Volume2, VolumeX, Smartphone, Monitor } from 'l
 import { soundManager } from '../utils/audioEffects';
 
 export const Header = () => {
-  const { user, soundEnabled, toggleAudioSound, setActiveTab, isMobileFrame, setIsMobileFrame, isCompact } = useApp();
+  const { user, soundEnabled, toggleAudioSound, setActiveTab, isMobileFrame, setIsMobileFrame, isCompact, setIsProfileModalOpen } = useApp();
 
   const isPro = user.subscription.tier === 'pro';
 
@@ -117,6 +117,25 @@ export const Header = () => {
             }`}
           >
             {soundEnabled ? <Volume2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> : <VolumeX className="w-3 h-3 sm:w-3.5 sm:h-3.5" />}
+          </button>
+
+          {/* Student Profile Avatar Button */}
+          <button
+            onClick={() => {
+              soundManager.playClick();
+              setIsProfileModalOpen(true);
+            }}
+            title={`View & Edit Profile (${user.name})`}
+            className="relative rounded-full ring-2 ring-amber-400 hover:ring-rose-500 hover:scale-105 transition-all shrink-0 cursor-pointer p-0.5 active:scale-95"
+          >
+            <img 
+              src={user.avatar} 
+              alt={user.name} 
+              className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 rounded-full object-cover" 
+            />
+            {isPro && (
+              <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-gradient-to-r from-rose-500 to-amber-400 ring-1 ring-white"></span>
+            )}
           </button>
 
           {/* Device Frame Toggle (Shown ONLY on large desktop screen when NOT in compact mode) */}

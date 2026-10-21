@@ -6,6 +6,7 @@ import { NotificationToast } from './components/NotificationToast';
 import { AudioPodcastModal } from './components/AudioPodcastModal';
 import { CheatSheetModal } from './components/CheatSheetModal';
 import { RedemptionModal } from './components/RedemptionModal';
+import { StudentProfileModal } from './components/StudentProfileModal';
 
 import { DashboardView } from './views/DashboardView';
 import { AITutorView } from './views/AITutorView';
@@ -74,6 +75,7 @@ const MainLayout = () => {
       <AudioPodcastModal />
       <CheatSheetModal />
       <RedemptionModal />
+      <StudentProfileModal />
     </div>
   );
 };

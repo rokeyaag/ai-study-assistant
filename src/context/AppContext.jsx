@@ -22,6 +22,7 @@ export const AppProvider = ({ children }) => {
   const [activePodcastNote, setActivePodcastNote] = useState(null);
   const [cheatSheetNote, setCheatSheetNote] = useState(null);
   const [isRedemptionSuccessModalOpen, setIsRedemptionSuccessModalOpen] = useState(false);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [isMobileFrame, setIsMobileFrame] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(typeof window !== 'undefined' ? window.innerWidth < 640 : false);
 
@@ -118,6 +119,15 @@ export const AppProvider = ({ children }) => {
     notify('🗑️ Note Deleted', 'The selected note was removed from your vault.', 'info');
   };
 
+  const updateUserProfile = (updatedFields) => {
+    setUser(prev => ({
+      ...prev,
+      ...updatedFields
+    }));
+    notify('✅ Profile Updated', 'Your student academic profile has been saved successfully!', 'success');
+    soundManager.playSuccess();
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -140,6 +150,9 @@ export const AppProvider = ({ children }) => {
         setCheatSheetNote,
         isRedemptionSuccessModalOpen,
         setIsRedemptionSuccessModalOpen,
+        isProfileModalOpen,
+        setIsProfileModalOpen,
+        updateUserProfile,
         isMobileFrame,
         setIsMobileFrame,
         isCompact,
