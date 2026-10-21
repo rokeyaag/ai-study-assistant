@@ -14,7 +14,7 @@ import {
 } from '../utils/aiService';
 
 export const AITutorView = () => {
-  const { SCAN_PRESETS, addNoteToVault, notify, user } = useApp();
+  const { SCAN_PRESETS, addNoteToVault, notify, user, isCompact } = useApp();
 
   const [selectedPreset, setSelectedPreset] = useState(SCAN_PRESETS[0]);
   const [isScanning, setIsScanning] = useState(false);
@@ -278,7 +278,9 @@ export const AITutorView = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <div className={`grid gap-2 ${
+            isCompact ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-3"
+          }`}>
             {SCAN_PRESETS.map((preset) => {
               const isSelected = selectedPreset.id === preset.id;
               return (
