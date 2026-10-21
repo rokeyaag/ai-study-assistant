@@ -36,13 +36,12 @@ export const Header = ({ isMobileFrame, setIsMobileFrame }) => {
           }}
           className="flex items-center gap-2.5 cursor-pointer group"
         >
-          {/* Logo Icon with Glowing Accent Ring */}
+          {/* 3D Mascot Logo Icon (Clean Transparent) */}
           <div className="relative group-hover:scale-105 transition-transform flex-shrink-0">
-            <div className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-amber-400 to-rose-500 opacity-60 blur-xs group-hover:opacity-100 transition duration-300"></div>
             <img 
               src="/logo.png" 
               alt="AI Study Assistant Logo" 
-              className="relative w-11 h-11 rounded-xl object-contain shadow-md shadow-rose-500/20 bg-slate-900/5 p-0.5 border border-amber-400/70"
+              className="w-12 h-12 object-contain drop-shadow-md"
             />
           </div>
 
