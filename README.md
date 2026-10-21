@@ -4,9 +4,11 @@
 [![Vite](https://img.shields.io/badge/Vite-6.0-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-v4.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Google Gemini](https://img.shields.io/badge/Google_Gemini-1.5_Flash_Vision-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
-[![Web Audio API](https://img.shields.io/badge/Web_Audio_API-Synthesized_FX-FF5722?style=for-the-badge&logo=w3c&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-ai--study--assistant-success?style=for-the-badge&logo=vercel)](https://ai-study-assistant-two-theta.vercel.app/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
+> 🚀 **Live Web Application**: [https://ai-study-assistant-two-theta.vercel.app/](https://ai-study-assistant-two-theta.vercel.app/)
+>
 > **AI Study Assistant** is an intelligent, gamified study assistant built for STEM students. It bridges the gap between static textbooks and active comprehension through **Textbook Page OCR + Step-by-Step AI Problem Solving**, an interactive **Socratic Voice & Chat Tutor**, a **Gamified MCQ Arena**, a **Personalized Knowledge Vault ("ডিজিটাল খাতা")**, and an inclusive **Points-to-Subscription Reward Economy**.
 
 ---
@@ -194,6 +196,7 @@ AI Study Assistant includes built-in smart educational presets that work out of 
 
 ## 👥 Hackathon Submission Details
 - **Project Name**: AI Study Assistant
+- **Live Demo Link**: [https://ai-study-assistant-two-theta.vercel.app/](https://ai-study-assistant-two-theta.vercel.app/)
 - **GitHub Repository**: [https://github.com/rokeyaag/ai-study-assistant](https://github.com/rokeyaag/ai-study-assistant)
 - **Category**: Education, AI for Social Good, Gamified Learning
 - **License**: MIT License
