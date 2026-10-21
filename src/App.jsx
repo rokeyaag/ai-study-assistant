@@ -26,14 +26,14 @@ const MainLayout = () => {
         {/* Tech Dot Matrix Pattern */}
         <div className="absolute inset-0 bg-tech-dots opacity-40"></div>
 
-        {/* Floating Glowing Aura 1: Amber Gold */}
-        <div className="absolute -top-32 -left-20 w-96 h-96 sm:w-[500px] sm:h-[500px] bg-amber-500/20 rounded-full blur-[110px] animate-float-1"></div>
+        {/* Floating Glowing Aura 1: Dynamic Amber Gold */}
+        <div className="absolute -top-32 -left-20 w-96 h-96 sm:w-[540px] sm:h-[540px] bg-amber-500/30 rounded-full blur-[100px] animate-float-active-1"></div>
 
-        {/* Floating Glowing Aura 2: Rose Red */}
-        <div className="absolute top-1/3 -right-32 w-96 h-96 sm:w-[480px] sm:h-[480px] bg-rose-500/20 rounded-full blur-[120px] animate-float-2"></div>
+        {/* Floating Glowing Aura 2: Dynamic Rose / Crimson */}
+        <div className="absolute top-1/3 -right-32 w-96 h-96 sm:w-[520px] sm:h-[520px] bg-rose-500/30 rounded-full blur-[110px] animate-float-active-2"></div>
 
-        {/* Floating Glowing Aura 3: Warm Orange / Gold Bottom */}
-        <div className="absolute -bottom-32 left-1/4 w-96 h-96 sm:w-[520px] sm:h-[520px] bg-amber-400/15 rounded-full blur-[130px] animate-float-3"></div>
+        {/* Floating Glowing Aura 3: Dynamic Coral / Gold Bottom */}
+        <div className="absolute -bottom-32 left-1/4 w-96 h-96 sm:w-[560px] sm:h-[560px] bg-orange-400/25 rounded-full blur-[120px] animate-float-active-3"></div>
 
         {/* Ambient Subtle Star Particles */}
         <div className="absolute top-1/4 left-12 w-2 h-2 rounded-full bg-amber-400/70 animate-ping"></div>
@@ -49,12 +49,12 @@ const MainLayout = () => {
         {/* Top Header */}
         <Header isMobileFrame={isMobileFrame} setIsMobileFrame={setIsMobileFrame} />
 
-        {/* Dynamic View Router with Ambient Mesh Animation */}
-        <main className="flex-1 px-4 py-5 overflow-y-auto bg-animated-mesh relative">
-          {/* Subtle Floating Ambient Orbs inside main view */}
-          <div className="absolute -top-10 -right-10 w-72 h-72 bg-amber-400/10 rounded-full blur-3xl pointer-events-none animate-float-1"></div>
-          <div className="absolute top-1/2 -left-10 w-72 h-72 bg-rose-500/10 rounded-full blur-3xl pointer-events-none animate-float-2"></div>
-          <div className="absolute -bottom-10 right-1/3 w-80 h-80 bg-amber-300/10 rounded-full blur-3xl pointer-events-none animate-float-3"></div>
+        {/* Dynamic View Router with Active Color-Shifting Aurora Animation */}
+        <main className="flex-1 px-4 py-5 overflow-y-auto bg-animated-aurora-active relative overflow-x-hidden">
+          {/* Vivid Floating Ambient Orbs inside main view with active multi-directional motion */}
+          <div className="absolute -top-12 -right-12 w-80 h-80 sm:w-96 sm:h-96 bg-gradient-to-br from-amber-400/25 via-amber-300/20 to-orange-400/20 rounded-full blur-2xl pointer-events-none animate-float-active-1"></div>
+          <div className="absolute top-1/3 -left-16 w-80 h-80 sm:w-96 sm:h-96 bg-gradient-to-tr from-rose-500/25 via-pink-400/20 to-rose-400/20 rounded-full blur-2xl pointer-events-none animate-float-active-2"></div>
+          <div className="absolute -bottom-12 right-1/4 w-96 h-96 sm:w-[420px] sm:h-[420px] bg-gradient-to-tl from-amber-500/20 via-orange-400/20 to-rose-500/15 rounded-full blur-2xl pointer-events-none animate-float-active-3"></div>
           {activeTab === 'dashboard' && <DashboardView />}
           {activeTab === 'tutor' && <AITutorView />}
           {activeTab === 'quiz' && <QuizArenaView />}
