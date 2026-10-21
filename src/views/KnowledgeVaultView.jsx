@@ -9,12 +9,51 @@ import { soundManager } from '../utils/audioEffects';
 export const KnowledgeVaultView = () => {
   const { 
     vaultNotes, deleteNoteFromVault, addNoteToVault, 
-    setActivePodcastNote, setCheatSheetNote, setActiveTab 
+    setActivePodcastNote, setCheatSheetNote, setActiveTab,
+    user, updateUserProfile, notify 
   } = useApp();
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSubject, setSelectedSubject] = useState('All');
   const [isAddNoteModalOpen, setIsAddNoteModalOpen] = useState(false);
+
+  // Subject management state for the filter bar
+  const [customSubjects, setCustomSubjects] = useState(() => {
+    const base = ['Physics', 'Higher Math', 'Chemistry', 'Biology'];
+    const userSubs = user?.subjects || [];
+    const noteSubs = vaultNotes.map(n => n.subject).filter(Boolean);
+    return Array.from(new Set([...base, ...userSubs, ...noteSubs]));
+  });
+  const [isAddingSubject, setIsAddingSubject] = useState(false);
+  const [newSubjectName, setNewSubjectName] = useState('');
+
+  const handleConfirmAddSubject = () => {
+    const trimmed = newSubjectName.trim();
+    if (!trimmed) {
+      setIsAddingSubject(false);
+      return;
+    }
+    if (!customSubjects.some(s => s.toLowerCase() === trimmed.toLowerCase())) {
+      const updated = [...customSubjects, trimmed];
+      setCustomSubjects(updated);
+      if (updateUserProfile && user) {
+        const existingUserSubs = user.subjects || [];
+        if (!existingUserSubs.some(s => s.toLowerCase() === trimmed.toLowerCase())) {
+          updateUserProfile({ subjects: [...existingUserSubs, trimmed] });
+        }
+      }
+      setSelectedSubject(trimmed);
+      soundManager.playSuccess();
+      if (notify) {
+        notify('Subject Added! 📚', `"${trimmed}" was added to your subjects.`, 'success');
+      }
+    } else {
+      setSelectedSubject(trimmed);
+      soundManager.playClick();
+    }
+    setNewSubjectName('');
+    setIsAddingSubject(false);
+  };
 
   // New Note Form State
   const [newTitle, setNewTitle] = useState('');
@@ -102,13 +141,26 @@ export const KnowledgeVaultView = () => {
             />
           </div>
 
-          {/* Filter Chips in a single clean row with matching color */}
-          <div className="flex items-center gap-2 p-1.5 bg-gradient-to-r from-amber-50/90 via-rose-50/50 to-amber-50/80 border border-amber-200/80 rounded-2xl overflow-x-auto scrollbar-none shadow-inner">
-            <span className="text-[11px] font-black uppercase text-amber-900/70 pl-2 pr-1 hidden sm:inline whitespace-nowrap">
-              Subject:
-            </span>
-            <div className="flex items-center gap-1.5 flex-nowrap">
-              {['All', 'Physics', 'Higher Math', 'Chemistry', 'Biology'].map((sub) => {
+          {/* Filter Chips in a single clean row with matching color & Right-Side + Add Subject Button */}
+          <div className="flex items-center justify-between gap-2 p-1.5 bg-gradient-to-r from-amber-50/90 via-rose-50/50 to-amber-50/80 border border-amber-200/80 rounded-2xl shadow-inner">
+            <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none flex-1 py-0.5 min-w-0">
+              <span className="text-[11px] font-black uppercase text-amber-900/70 pl-2 pr-1 hidden sm:inline whitespace-nowrap shrink-0">
+                Subject:
+              </span>
+              <button
+                onClick={() => {
+                  soundManager.playClick();
+                  setSelectedSubject('All');
+                }}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-black whitespace-nowrap transition-all duration-200 cursor-pointer shrink-0 ${
+                  selectedSubject === 'All'
+                    ? 'bg-gradient-to-r from-rose-500 via-amber-500 to-amber-500 text-white shadow-md shadow-rose-500/25 scale-[1.02]'
+                    : 'bg-white/95 text-slate-700 hover:text-amber-900 hover:bg-amber-100/70 border border-slate-200/90 hover:border-amber-300 shadow-xs'
+                }`}
+              >
+                All
+              </button>
+              {customSubjects.map((sub) => {
                 const isSelected = selectedSubject === sub;
                 return (
                   <button
@@ -117,7 +169,7 @@ export const KnowledgeVaultView = () => {
                       soundManager.playClick();
                       setSelectedSubject(sub);
                     }}
-                    className={`px-3.5 py-1.5 rounded-xl text-xs font-black whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                    className={`px-3.5 py-1.5 rounded-xl text-xs font-black whitespace-nowrap transition-all duration-200 cursor-pointer shrink-0 ${
                       isSelected
                         ? 'bg-gradient-to-r from-rose-500 via-amber-500 to-amber-500 text-white shadow-md shadow-rose-500/25 scale-[1.02]'
                         : 'bg-white/95 text-slate-700 hover:text-amber-900 hover:bg-amber-100/70 border border-slate-200/90 hover:border-amber-300 shadow-xs'
@@ -128,6 +180,55 @@ export const KnowledgeVaultView = () => {
                 );
               })}
             </div>
+
+            {/* RED BOX LOCATION: RIGHT-SIDE + Add Subject BUTTON */}
+            {isAddingSubject ? (
+              <div className="flex items-center gap-1.5 shrink-0 animate-in fade-in slide-in-from-right duration-200 pr-0.5">
+                <input
+                  type="text"
+                  autoFocus
+                  value={newSubjectName}
+                  onChange={(e) => setNewSubjectName(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      handleConfirmAddSubject();
+                    }
+                    if (e.key === 'Escape') setIsAddingSubject(false);
+                  }}
+                  placeholder="Subject name..."
+                  className="px-2.5 py-1 text-xs font-bold rounded-xl border border-amber-400 bg-white text-slate-900 w-28 sm:w-36 focus:outline-none focus:ring-1 focus:ring-amber-500 shadow-xs"
+                />
+                <button
+                  type="button"
+                  onClick={handleConfirmAddSubject}
+                  className="px-2.5 py-1 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-xs rounded-xl shadow-xs transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                >
+                  Add
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsAddingSubject(false)}
+                  className="p-1 hover:bg-slate-200 text-slate-500 rounded-lg transition-colors cursor-pointer"
+                  title="Cancel"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={() => {
+                  soundManager.playClick();
+                  setIsAddingSubject(true);
+                }}
+                className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-white font-black text-xs shadow-md shadow-amber-500/20 flex items-center gap-1.5 shrink-0 cursor-pointer transition-all hover:scale-105 active:scale-95 border border-amber-600/30 whitespace-nowrap"
+                title="Add a new subject to filter notes"
+              >
+                <Plus className="w-3.5 h-3.5 stroke-[2.8]" />
+                <span>+ Add Subject</span>
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -246,12 +347,11 @@ export const KnowledgeVaultView = () => {
                 <select
                   value={newSubject}
                   onChange={(e) => setNewSubject(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-900 focus:outline-none focus:border-amber-500"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-900 focus:outline-none focus:border-amber-500 font-bold"
                 >
-                  <option value="Physics">Physics</option>
-                  <option value="Higher Math">Higher Math</option>
-                  <option value="Chemistry">Chemistry</option>
-                  <option value="Biology">Biology</option>
+                  {customSubjects.map((sub) => (
+                    <option key={sub} value={sub}>{sub}</option>
+                  ))}
                 </select>
               </div>
 
