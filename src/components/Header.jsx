@@ -31,16 +31,16 @@ export const Header = () => {
           }}
           className="flex items-center gap-2 sm:gap-2.5 cursor-pointer group min-w-0 shrink"
         >
-          {/* Mascot Logo Icon with Glowing Orbital Halo and Smooth 360 Spin */}
+          {/* Mascot Logo Icon with Periodic 360 Spin & Playful Move (Every few seconds) */}
           <div className="relative group-hover:scale-110 transition-transform duration-300 shrink-0 flex items-center justify-center p-0.5">
-            {/* Ambient Glowing Halo that breathes and rotates behind logo */}
-            <div className="absolute -inset-1 rounded-full bg-gradient-to-tr from-amber-400/40 via-rose-500/30 to-amber-300/40 blur-[5px] animate-orbital-halo pointer-events-none"></div>
+            {/* Ambient Glowing Flare that lights up when spinning */}
+            <div className="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-amber-400/50 via-rose-500/40 to-amber-300/50 blur-[6px] animate-halo-periodic pointer-events-none"></div>
 
-            {/* Smooth Continuously Rotating Mascot Logo (Round/Spin) */}
+            {/* Periodic Moving/Spinning Mascot Logo (kisokkhon porpor gure) */}
             <img 
               src="/logo.png" 
               alt="AI Study Assistant Logo" 
-              className="relative w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-md animate-logo-spin animate-logo-spin-hover will-change-transform"
+              className="relative w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-md animate-logo-periodic will-change-transform"
             />
           </div>
 
