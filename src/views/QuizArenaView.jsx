@@ -182,7 +182,7 @@ export const QuizArenaView = () => {
   });
 
   return (
-    <div className="space-y-6 pb-20 animate-in fade-in duration-300">
+    <div className="space-y-6 pb-6 animate-in fade-in duration-300">
       {/* Top Banner (Visible during active quiz) */}
       {!isQuizCompleted && (
         <div className="bg-white border border-slate-200 hover:border-amber-300/80 rounded-3xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-300">

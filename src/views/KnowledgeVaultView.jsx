@@ -57,7 +57,7 @@ export const KnowledgeVaultView = () => {
   };
 
   return (
-    <div className="space-y-6 pb-20 animate-in fade-in duration-300">
+    <div className="space-y-6 pb-6 animate-in fade-in duration-300">
       {/* View Header Banner */}
       <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">

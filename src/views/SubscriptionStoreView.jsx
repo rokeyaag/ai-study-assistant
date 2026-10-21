@@ -29,7 +29,7 @@ export const SubscriptionStoreView = () => {
   };
 
   return (
-    <div className="space-y-6 pb-20 animate-in fade-in duration-300">
+    <div className="space-y-6 pb-6 animate-in fade-in duration-300">
       {/* Hero Points Wallet & Pro Status Banner */}
       <div className="relative overflow-hidden rounded-3xl bg-white border border-slate-200 p-6 shadow-sm">
         <div className="absolute -top-16 -right-16 w-44 h-44 bg-amber-400/10 rounded-full blur-3xl"></div>

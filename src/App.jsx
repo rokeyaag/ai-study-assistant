@@ -50,7 +50,7 @@ const MainLayout = () => {
         <Header isMobileFrame={isMobileFrame} setIsMobileFrame={setIsMobileFrame} />
 
         {/* Dynamic View Router with Active Color-Shifting Aurora Animation */}
-        <main className="flex-1 px-4 py-5 overflow-y-auto bg-animated-aurora-active relative overflow-x-hidden">
+        <main className="flex-1 px-4 py-5 bg-animated-aurora-active relative overflow-x-hidden">
           {/* Vivid Floating Ambient Orbs inside main view with active multi-directional motion */}
           <div className="absolute -top-12 -right-12 w-80 h-80 sm:w-96 sm:h-96 bg-gradient-to-br from-amber-400/25 via-amber-300/20 to-orange-400/20 rounded-full blur-2xl pointer-events-none animate-float-active-1"></div>
           <div className="absolute top-1/3 -left-16 w-80 h-80 sm:w-96 sm:h-96 bg-gradient-to-tr from-rose-500/25 via-pink-400/20 to-rose-400/20 rounded-full blur-2xl pointer-events-none animate-float-active-2"></div>

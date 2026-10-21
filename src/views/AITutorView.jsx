@@ -178,7 +178,7 @@ export const AITutorView = () => {
   };
 
   return (
-    <div className="space-y-6 pb-20 animate-in fade-in duration-300">
+    <div className="space-y-6 pb-6 animate-in fade-in duration-300">
       {/* Hidden file and camera inputs */}
       <input
         type="file"

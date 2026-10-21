@@ -66,7 +66,7 @@ export const DashboardView = () => {
   };
 
   return (
-    <div className="space-y-5 pb-20 animate-in fade-in duration-300">
+    <div className="space-y-5 pb-6 animate-in fade-in duration-300">
       {/* Student Welcome Banner: Crisp White with Subtle Gold/Rose Accents */}
       <div className="relative overflow-hidden rounded-3xl bg-white border border-slate-200/90 hover:border-amber-300/80 p-5 shadow-sm hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-300 hover:-translate-y-0.5">
         <div className="absolute -top-12 -right-12 w-36 h-36 bg-amber-400/10 rounded-full blur-2xl"></div>
