@@ -68,7 +68,7 @@ export const DashboardView = () => {
   return (
     <div className="space-y-5 pb-20 animate-in fade-in duration-300">
       {/* Student Welcome Banner: Crisp White with Subtle Gold/Rose Accents */}
-      <div className="relative overflow-hidden rounded-3xl bg-white border border-slate-200/90 p-5 shadow-sm">
+      <div className="relative overflow-hidden rounded-3xl bg-white border border-slate-200/90 hover:border-amber-300/80 p-5 shadow-sm hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-300 hover:-translate-y-0.5">
         <div className="absolute -top-12 -right-12 w-36 h-36 bg-amber-400/10 rounded-full blur-2xl"></div>
         <div className="absolute -bottom-12 -left-12 w-36 h-36 bg-rose-500/10 rounded-full blur-2xl"></div>
         
@@ -113,7 +113,7 @@ export const DashboardView = () => {
           soundManager.playClick();
           setActiveTab('tutor');
         }}
-        className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-amber-50/30 to-rose-50/40 p-6 shadow-sm border border-slate-200 hover:border-amber-400 cursor-pointer group hover:shadow-md transition-all"
+        className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-amber-50/20 to-rose-50/30 p-6 shadow-sm border border-slate-200 hover:border-rose-400 cursor-pointer group hover:shadow-xl hover:shadow-rose-500/15 hover:-translate-y-1.5 transition-all duration-300 ease-out hover:bg-gradient-to-br hover:from-white hover:via-amber-50/50 hover:to-rose-50/60"
       >
         <div className="absolute right-0 bottom-0 opacity-10 translate-x-4 translate-y-4 group-hover:scale-110 transition-transform">
           <Camera className="w-40 h-40 text-slate-900" />
@@ -155,7 +155,7 @@ export const DashboardView = () => {
             soundManager.playClick();
             setActiveTab('quiz');
           }}
-          className="bg-white border border-slate-200 hover:border-amber-400 rounded-3xl p-5 cursor-pointer transition-all group flex flex-col justify-between shadow-sm hover:shadow-md"
+          className="bg-white border border-slate-200 hover:border-amber-400 rounded-3xl p-5 cursor-pointer transition-all duration-300 ease-out group flex flex-col justify-between shadow-sm hover:shadow-xl hover:shadow-amber-500/20 hover:-translate-y-1.5 hover:bg-gradient-to-br hover:from-white hover:to-amber-50/40"
         >
           <div>
             <div className="flex items-center justify-between mb-3">
@@ -186,7 +186,7 @@ export const DashboardView = () => {
             soundManager.playClick();
             setActiveTab('vault');
           }}
-          className="bg-white border border-slate-200 hover:border-rose-400 rounded-3xl p-5 cursor-pointer transition-all group flex flex-col justify-between shadow-sm hover:shadow-md"
+          className="bg-white border border-slate-200 hover:border-rose-400 rounded-3xl p-5 cursor-pointer transition-all duration-300 ease-out group flex flex-col justify-between shadow-sm hover:shadow-xl hover:shadow-rose-500/20 hover:-translate-y-1.5 hover:bg-gradient-to-br hover:from-white hover:to-rose-50/40"
         >
           <div>
             <div className="flex items-center justify-between mb-3">
@@ -212,8 +212,8 @@ export const DashboardView = () => {
         </div>
       </div>
 
-      {/* Pomodoro Focus Timer Card (Clean Light Theme) */}
-      <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm relative overflow-hidden">
+      {/* Pomodoro Focus Timer Card (Clean Light Theme with Red/Amber Glow) */}
+      <div className="bg-white border border-slate-200 hover:border-rose-300 rounded-3xl p-5 shadow-sm hover:shadow-lg hover:shadow-rose-500/15 hover:-translate-y-1 transition-all duration-300 ease-out relative overflow-hidden hover:bg-gradient-to-r hover:from-white hover:to-rose-50/30">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="p-3 rounded-2xl bg-rose-50 border border-rose-200 text-rose-600">
@@ -274,7 +274,7 @@ export const DashboardView = () => {
       </div>
 
       {/* AI Performance & Weakness Analytics */}
-      <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm">
+      <div className="bg-white border border-slate-200 hover:border-amber-300/80 rounded-3xl p-5 shadow-sm hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-300 hover:-translate-y-0.5">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <TrendingUp className="w-5 h-5 text-amber-600" />
@@ -287,7 +287,10 @@ export const DashboardView = () => {
 
         <div className="space-y-3">
           {user.weaknessAreas.map((area, idx) => (
-            <div key={idx} className="bg-slate-50 p-3 rounded-2xl border border-slate-200/80">
+            <div 
+              key={idx} 
+              className="bg-slate-50 hover:bg-gradient-to-r hover:from-amber-50/40 hover:to-rose-50/30 p-3 rounded-2xl border border-slate-200/80 hover:border-amber-300/70 transition-all duration-200 hover:scale-[1.01]"
+            >
               <div className="flex justify-between items-center text-xs mb-1.5 font-bold">
                 <span className="text-slate-800">{area.subject}</span>
                 <span className={

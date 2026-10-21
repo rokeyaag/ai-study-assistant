@@ -130,7 +130,7 @@ export const KnowledgeVaultView = () => {
           {filteredNotes.map((note) => (
             <div
               key={note.id}
-              className="bg-white border border-slate-200 hover:border-amber-300 rounded-3xl p-5 shadow-sm hover:shadow-md flex flex-col justify-between transition-all group"
+              className="bg-white border border-slate-200 hover:border-amber-400 rounded-3xl p-5 shadow-sm hover:shadow-xl hover:shadow-amber-500/15 hover:-translate-y-1.5 hover:bg-gradient-to-br hover:from-white hover:to-amber-50/20 flex flex-col justify-between transition-all duration-300 ease-out group"
             >
               <div>
                 {/* Subject Badge & Action Bar */}

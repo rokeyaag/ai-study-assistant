@@ -228,7 +228,7 @@ export const QuizArenaView = () => {
 
       {/* Active Question Card Screen */}
       {!isQuizCompleted ? (
-        <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6">
+        <div className="bg-white border border-slate-200 hover:border-amber-300 rounded-3xl p-6 shadow-sm hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-300 space-y-6">
           {/* Progress Bar & Header Stats */}
           <div>
             <div className="flex justify-between items-center text-xs font-black text-slate-500 mb-2">
@@ -263,7 +263,7 @@ export const QuizArenaView = () => {
               const isSelected = selectedOption === idx;
               const isCorrectAnswer = idx === currentQ.correctIndex;
 
-              let optionStyle = 'bg-slate-50 hover:bg-slate-100 border-slate-200 text-slate-800';
+              let optionStyle = 'bg-slate-50 hover:bg-amber-50/50 hover:border-amber-300 border-slate-200 text-slate-800 hover:-translate-y-0.5 shadow-sm transition-all duration-200';
 
               if (isAnswerSubmitted) {
                 if (isCorrectAnswer) {

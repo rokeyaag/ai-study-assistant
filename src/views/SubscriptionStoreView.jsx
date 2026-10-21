@@ -93,7 +93,7 @@ export const SubscriptionStoreView = () => {
       {/* Daily Claim & Invite Bonus Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {/* Daily Login Reward */}
-        <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between">
+        <div className="bg-white border border-slate-200 hover:border-rose-400 rounded-3xl p-5 shadow-sm hover:shadow-xl hover:shadow-rose-500/15 hover:-translate-y-1.5 hover:bg-gradient-to-br hover:from-white hover:to-rose-50/20 transition-all duration-300 ease-out flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-2">
               <div className="p-2.5 rounded-2xl bg-rose-50 text-rose-600 border border-rose-200">
@@ -124,7 +124,7 @@ export const SubscriptionStoreView = () => {
         </div>
 
         {/* Refer a Friend */}
-        <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between">
+        <div className="bg-white border border-slate-200 hover:border-amber-400 rounded-3xl p-5 shadow-sm hover:shadow-xl hover:shadow-amber-500/15 hover:-translate-y-1.5 hover:bg-gradient-to-br hover:from-white hover:to-amber-50/20 transition-all duration-300 ease-out flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-2">
               <div className="p-2.5 rounded-2xl bg-amber-50 text-amber-600 border border-amber-200">
