@@ -611,6 +611,17 @@ export const StudentProfileModal = () => {
                         </button>
                       </div>
                     ))}
+
+                    {/* RIGHT-SIDE ACTION CHIP: + Add a New Subject */}
+                    <button
+                      type="button"
+                      onClick={() => subjectInputRef.current?.focus()}
+                      className="px-2.5 py-1 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-[11px] font-black shadow-xs flex items-center gap-1 cursor-pointer transition-all hover:scale-105 active:scale-95 border border-amber-600"
+                      title="Click to add subject"
+                    >
+                      <Plus className="w-3 h-3 stroke-[2.8]" />
+                      <span>+ Add a New Subject</span>
+                    </button>
                   </div>
                 </div>
 

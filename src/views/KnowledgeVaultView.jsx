@@ -107,7 +107,7 @@ export const KnowledgeVaultView = () => {
             <span className="text-[11px] font-black uppercase text-amber-900/70 pl-2 pr-1 hidden sm:inline whitespace-nowrap">
               Subject:
             </span>
-            <div className="flex items-center gap-1.5 flex-nowrap">
+            <div className="flex items-center gap-1.5 flex-nowrap flex-1">
               {['All', 'Physics', 'Higher Math', 'Chemistry', 'Biology'].map((sub) => {
                 const isSelected = selectedSubject === sub;
                 return (
@@ -128,6 +128,19 @@ export const KnowledgeVaultView = () => {
                 );
               })}
             </div>
+
+            {/* RIGHT-SIDE BUTTON: + Add a New Subject */}
+            <button
+              onClick={() => {
+                soundManager.playClick();
+                setActiveTab('profile');
+              }}
+              className="px-3 py-1.5 rounded-xl text-xs font-black whitespace-nowrap bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-white shadow-xs flex items-center gap-1 shrink-0 cursor-pointer transition-all hover:scale-105 active:scale-95 ml-auto"
+              title="Add a new subject to your curriculum"
+            >
+              <Plus className="w-3.5 h-3.5 stroke-[2.8]" />
+              <span>+ Add a New Subject</span>
+            </button>
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import {
   Trophy, CheckCircle2, XCircle, ArrowRight, RotateCcw, 
   Sparkles, Flame, Coins, Zap, HelpCircle, BookOpen,
   Printer, BookmarkPlus, Check, Award, ChevronDown, ChevronUp,
-  FileText, Star, Filter
+  FileText, Star, Filter, Plus
 } from 'lucide-react';
 import { soundManager } from '../utils/audioEffects';
 import confetti from 'canvas-confetti';
@@ -209,7 +209,7 @@ export const QuizArenaView = () => {
               <span className="text-[11px] font-black uppercase text-amber-900/70 pl-2 pr-1 hidden sm:inline whitespace-nowrap">
                 Select Subject:
               </span>
-              <div className="flex items-center gap-1.5 flex-nowrap">
+              <div className="flex items-center gap-1.5 flex-nowrap flex-1">
                 {['All', 'Physics', 'Higher Math', 'Chemistry', 'Biology', 'Computer Science'].map((sub) => {
                   const isSelected = selectedSubjectFilter === sub;
                   return (
@@ -231,6 +231,19 @@ export const QuizArenaView = () => {
                   );
                 })}
               </div>
+
+              {/* RIGHT-SIDE BUTTON: + Add a New Subject */}
+              <button
+                onClick={() => {
+                  soundManager.playClick();
+                  setActiveTab('profile');
+                }}
+                className="px-3 py-1.5 rounded-xl text-xs font-black whitespace-nowrap bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-white shadow-xs flex items-center gap-1 shrink-0 cursor-pointer transition-all hover:scale-105 active:scale-95 ml-auto"
+                title="Add a new subject to study in your profile"
+              >
+                <Plus className="w-3.5 h-3.5 stroke-[2.8]" />
+                <span>+ Add a New Subject</span>
+              </button>
             </div>
           </div>
         </div>

@@ -571,7 +571,7 @@ export const ProfileView = () => {
 
               {/* Enrolled Study Subjects Section with Right-Side +Add a New Subject Button */}
               <div className="p-4 sm:p-5 rounded-2xl bg-amber-50/50 border border-amber-200/90 space-y-3 shadow-xs">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-amber-200/70 pb-3">
+                <div className="flex items-center justify-between gap-2 border-b border-amber-200/70 pb-3">
                   <div>
                     <label className="block text-xs font-black text-slate-800 flex items-center gap-1.5">
                       <BookOpen className="w-4 h-4 text-amber-600" />
@@ -672,6 +672,21 @@ export const ProfileView = () => {
                       </button>
                     </div>
                   ))}
+
+                  {/* RIGHT-SIDE ACTION CHIP: + Add a New Subject */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      subjectInputRef.current?.focus();
+                      subjectInputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }}
+                    className="px-3 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-black shadow-xs flex items-center gap-1.5 cursor-pointer transition-all hover:scale-105 active:scale-95 border border-amber-600"
+                    title="Click to focus input and add new subject"
+                  >
+                    <Plus className="w-3.5 h-3.5 stroke-[2.8]" />
+                    <span>+ Add a New Subject</span>
+                  </button>
+
                   {subjectsList.length === 0 && (
                     <span className="text-xs text-slate-400 italic">No subjects added yet. Type a subject name and click "Add" on the right.</span>
                   )}
@@ -829,7 +844,7 @@ export const ProfileView = () => {
 
             {/* Registration Enrolled Subjects with Right-Side +Add a New Subject Button */}
             <div className="p-4 sm:p-5 rounded-2xl bg-rose-50/50 border border-rose-200/90 space-y-3 shadow-xs">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-rose-200/70 pb-3">
+              <div className="flex items-center justify-between gap-2 border-b border-rose-200/70 pb-3">
                 <div>
                   <label className="block text-xs font-black text-slate-800 flex items-center gap-1.5">
                     <BookOpen className="w-4 h-4 text-rose-600" />
@@ -928,6 +943,20 @@ export const ProfileView = () => {
                     </button>
                   </div>
                 ))}
+
+                {/* RIGHT-SIDE ACTION CHIP: + Add a New Subject */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    regSubjectInputRef.current?.focus();
+                    regSubjectInputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }}
+                  className="px-3 py-1.5 rounded-xl bg-rose-500 hover:bg-rose-600 text-white text-xs font-black shadow-xs flex items-center gap-1.5 cursor-pointer transition-all hover:scale-105 active:scale-95 border border-rose-600"
+                  title="Click to focus input and add new subject"
+                >
+                  <Plus className="w-3.5 h-3.5 stroke-[2.8]" />
+                  <span>+ Add a New Subject</span>
+                </button>
               </div>
             </div>
 

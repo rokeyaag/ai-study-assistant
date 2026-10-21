@@ -344,6 +344,20 @@ export const DashboardView = () => {
             </div>
           ))}
         </div>
+
+        {/* Right side + Add a New Subject action button */}
+        <div className="pt-3 flex justify-end">
+          <button
+            onClick={() => {
+              soundManager.playClick();
+              setActiveTab('profile');
+            }}
+            className="w-full sm:w-auto px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-white font-black text-xs shadow-md shadow-amber-500/20 flex items-center justify-center gap-1.5 cursor-pointer transition-all hover:scale-105 active:scale-95"
+          >
+            <Plus className="w-4 h-4 stroke-[2.8]" />
+            <span>+ Add a New Subject</span>
+          </button>
+        </div>
       </div>
     </div>
   );
