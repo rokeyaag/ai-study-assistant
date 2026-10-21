@@ -342,3 +342,43 @@
 .animate-water-plop {
   animation: waterPlop 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
+
+
+/* Continuously Smooth Rotating Header Mascot Logo */
+@keyframes logoSpin360 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-logo-spin {
+  animation: logoSpin360 10s linear infinite;
+  transform-origin: center center;
+}
+
+.animate-logo-spin-hover:hover {
+  animation-duration: 3s;
+}
+
+/* Glowing Rotating Ambient Orbital Aura */
+@keyframes orbitalHalo {
+  0% {
+    transform: rotate(0deg) scale(0.95);
+    opacity: 0.5;
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+    opacity: 0.85;
+  }
+  100% {
+    transform: rotate(360deg) scale(0.95);
+    opacity: 0.5;
+  }
+}
+
+.animate-orbital-halo {
+  animation: orbitalHalo 6s ease-in-out infinite;
+}
