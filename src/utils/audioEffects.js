@@ -51,6 +51,58 @@ class SoundManager {
     this.playTone(600, 'sine', 0.05, 0.05);
   }
 
+  // Realistic Juicy Water Drop / Bubble Plop Sound Effect
+  playWaterDrop() {
+    if (!this.soundEnabled) return;
+    try {
+      this.init();
+      if (!this.ctx) return;
+      if (this.ctx.state === 'suspended') {
+        this.ctx.resume();
+      }
+
+      const now = this.ctx.currentTime;
+      
+      // Main resonant water droplet bubble sweep
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = 'sine';
+      // Classic water droplet pitch sweep upwards (360Hz -> 1600Hz)
+      osc.frequency.setValueAtTime(360, now);
+      osc.frequency.exponentialRampToValueAtTime(1600, now + 0.08);
+
+      gain.gain.setValueAtTime(0.01, now);
+      gain.gain.linearRampToValueAtTime(0.24, now + 0.015);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+
+      osc.start(now);
+      osc.stop(now + 0.16);
+
+      // Secondary subtle water bubble harmonic ripple
+      const osc2 = this.ctx.createOscillator();
+      const gain2 = this.ctx.createGain();
+      osc2.type = 'sine';
+      osc2.frequency.setValueAtTime(560, now + 0.025);
+      osc2.frequency.exponentialRampToValueAtTime(2200, now + 0.095);
+
+      gain2.gain.setValueAtTime(0.01, now + 0.025);
+      gain2.gain.linearRampToValueAtTime(0.12, now + 0.038);
+      gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.13);
+
+      osc2.connect(gain2);
+      gain2.connect(this.ctx.destination);
+
+      osc2.start(now + 0.025);
+      osc2.stop(now + 0.14);
+    } catch {
+      // Audio fallback
+    }
+  }
+
   playSuccess() {
     if (!this.soundEnabled) return;
     try {
