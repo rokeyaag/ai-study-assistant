@@ -185,42 +185,52 @@ export const QuizArenaView = () => {
     <div className="space-y-6 pb-20 animate-in fade-in duration-300">
       {/* Top Banner (Visible during active quiz) */}
       {!isQuizCompleted && (
-        <div className="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="bg-white border border-slate-200 hover:border-amber-300/80 rounded-3xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-300">
+          <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-3.5">
-              <div className="p-3 rounded-2xl bg-amber-50 text-amber-600 border border-amber-200">
+              <div className="p-3 rounded-2xl bg-gradient-to-br from-amber-50 to-rose-50 text-amber-600 border border-amber-200 shadow-sm">
                 <Trophy className="w-6 h-6 animate-pulse" />
               </div>
               <div>
                 <div className="flex items-center gap-2">
                   <h2 className="font-black text-base sm:text-lg text-slate-900">Interactive Quiz Arena</h2>
-                  <span className="px-2 py-0.5 text-[10px] font-black rounded-full bg-amber-100 text-amber-800 border border-amber-200">
+                  <span className="px-2.5 py-0.5 text-[10px] font-black rounded-full bg-gradient-to-r from-amber-100 to-rose-100 text-amber-900 border border-amber-200/80 shadow-xs">
                     MCQ Arena
                   </span>
                 </div>
                 <p className="text-xs text-slate-500">Earn 10 to 15 reward points for every correct question</p>
               </div>
             </div>
+          </div>
 
-            {/* Subject Filter Chips */}
-            <div className="flex flex-wrap gap-1.5 text-xs">
-              {['All', 'Physics', 'Higher Math', 'Chemistry', 'Biology', 'Computer Science'].map((sub) => (
-                <button
-                  key={sub}
-                  onClick={() => {
-                    soundManager.playClick();
-                    setSelectedSubjectFilter(sub);
-                    handleRestartQuiz();
-                  }}
-                  className={`px-3 py-1 rounded-xl text-[11px] font-black transition-all ${
-                    selectedSubjectFilter === sub
-                      ? 'bg-amber-500 text-white shadow-sm scale-105'
-                      : 'bg-slate-50 text-slate-600 hover:text-slate-900 border border-slate-200'
-                  }`}
-                >
-                  {sub}
-                </button>
-              ))}
+          {/* Subject Filter Chips: Dedicated 1-Line Row with Matching Warm Brand Color */}
+          <div className="mt-4 pt-4 border-t border-slate-100">
+            <div className="flex items-center gap-2 p-1.5 bg-gradient-to-r from-amber-50/90 via-rose-50/50 to-amber-50/80 border border-amber-200/80 rounded-2xl overflow-x-auto scrollbar-none shadow-inner">
+              <span className="text-[11px] font-black uppercase text-amber-900/70 pl-2 pr-1 hidden sm:inline whitespace-nowrap">
+                Select Subject:
+              </span>
+              <div className="flex items-center gap-1.5 flex-nowrap">
+                {['All', 'Physics', 'Higher Math', 'Chemistry', 'Biology', 'Computer Science'].map((sub) => {
+                  const isSelected = selectedSubjectFilter === sub;
+                  return (
+                    <button
+                      key={sub}
+                      onClick={() => {
+                        soundManager.playClick();
+                        setSelectedSubjectFilter(sub);
+                        handleRestartQuiz();
+                      }}
+                      className={`px-3.5 py-1.5 rounded-xl text-xs font-black whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                        isSelected
+                          ? 'bg-gradient-to-r from-rose-500 via-amber-500 to-amber-500 text-white shadow-md shadow-rose-500/25 scale-[1.02]'
+                          : 'bg-white/95 text-slate-700 hover:text-amber-900 hover:bg-amber-100/70 border border-slate-200/90 hover:border-amber-300 shadow-xs'
+                      }`}
+                    >
+                      {sub}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>

@@ -102,24 +102,32 @@ export const KnowledgeVaultView = () => {
             />
           </div>
 
-          {/* Filter Chips */}
-          <div className="flex flex-wrap gap-1.5 text-xs">
-            {['All', 'Physics', 'Higher Math', 'Chemistry', 'Biology'].map((sub) => (
-              <button
-                key={sub}
-                onClick={() => {
-                  soundManager.playClick();
-                  setSelectedSubject(sub);
-                }}
-                className={`px-3 py-1 rounded-xl text-[11px] font-black transition-all ${
-                  selectedSubject === sub
-                    ? 'bg-amber-500 text-white shadow-sm'
-                    : 'bg-slate-50 text-slate-600 border border-slate-200 hover:bg-slate-100'
-                }`}
-              >
-                {sub}
-              </button>
-            ))}
+          {/* Filter Chips in a single clean row with matching color */}
+          <div className="flex items-center gap-2 p-1.5 bg-gradient-to-r from-amber-50/90 via-rose-50/50 to-amber-50/80 border border-amber-200/80 rounded-2xl overflow-x-auto scrollbar-none shadow-inner">
+            <span className="text-[11px] font-black uppercase text-amber-900/70 pl-2 pr-1 hidden sm:inline whitespace-nowrap">
+              Subject:
+            </span>
+            <div className="flex items-center gap-1.5 flex-nowrap">
+              {['All', 'Physics', 'Higher Math', 'Chemistry', 'Biology'].map((sub) => {
+                const isSelected = selectedSubject === sub;
+                return (
+                  <button
+                    key={sub}
+                    onClick={() => {
+                      soundManager.playClick();
+                      setSelectedSubject(sub);
+                    }}
+                    className={`px-3.5 py-1.5 rounded-xl text-xs font-black whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                      isSelected
+                        ? 'bg-gradient-to-r from-rose-500 via-amber-500 to-amber-500 text-white shadow-md shadow-rose-500/25 scale-[1.02]'
+                        : 'bg-white/95 text-slate-700 hover:text-amber-900 hover:bg-amber-100/70 border border-slate-200/90 hover:border-amber-300 shadow-xs'
+                    }`}
+                  >
+                    {sub}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
