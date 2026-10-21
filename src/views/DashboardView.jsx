@@ -109,7 +109,7 @@ export const DashboardView = () => {
         </div>
 
         <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div>
+          <div className="flex-1">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 border border-rose-200 text-[11px] font-black text-rose-700 mb-2.5 shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-amber-600 animate-pulse" /> AI Textbook Scanner & Solver
             </span>
@@ -121,11 +121,18 @@ export const DashboardView = () => {
             </p>
           </div>
 
-          <button className="px-5 py-3 rounded-2xl bg-gradient-to-r from-rose-600 to-amber-500 hover:from-rose-500 hover:to-amber-400 text-white font-black text-xs flex items-center gap-2 shadow-md shadow-rose-600/20 group-hover:scale-105 transition-all">
-            <Camera className="w-4 h-4 text-white" />
-            <span>Launch Scanner</span>
-            <ArrowRight className="w-3.5 h-3.5 text-white" />
-          </button>
+          <div className="flex items-center gap-4">
+            <img 
+              src="/logo.png" 
+              alt="AI Study Assistant Mascot" 
+              className="w-20 h-20 sm:w-24 sm:h-24 object-contain drop-shadow-lg group-hover:scale-105 transition-transform"
+            />
+            <button className="px-5 py-3 rounded-2xl bg-gradient-to-r from-rose-600 to-amber-500 hover:from-rose-500 hover:to-amber-400 text-white font-black text-xs flex items-center gap-2 shadow-md shadow-rose-600/20 group-hover:scale-105 transition-all">
+              <Camera className="w-4 h-4 text-white" />
+              <span>Launch Scanner</span>
+              <ArrowRight className="w-3.5 h-3.5 text-white" />
+            </button>
+          </div>
         </div>
       </div>
 

@@ -469,9 +469,11 @@ export const AITutorView = () => {
                     className={`flex gap-2.5 ${isUser ? 'justify-end' : 'justify-start'}`}
                   >
                     {!isUser && (
-                      <div className="w-7 h-7 rounded-full bg-amber-100 border border-amber-200 text-amber-700 flex items-center justify-center flex-shrink-0 text-[11px] font-black">
-                        AI
-                      </div>
+                      <img 
+                        src="/logo.png" 
+                        alt="AI Tutor Avatar" 
+                        className="w-7 h-7 rounded-full object-cover border border-amber-300 shadow-sm flex-shrink-0 bg-white" 
+                      />
                     )}
                     <div
                       className={`max-w-[85%] p-3 rounded-2xl leading-relaxed text-xs ${

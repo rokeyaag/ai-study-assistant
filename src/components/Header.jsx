@@ -20,12 +20,12 @@ export const Header = ({ isMobileFrame, setIsMobileFrame }) => {
           className="flex items-center gap-2.5 cursor-pointer group"
         >
           {/* Logo Icon */}
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 via-rose-500 to-red-600 p-0.5 shadow-md shadow-rose-500/20 group-hover:scale-105 transition-transform">
-            <div className="w-full h-full bg-white rounded-[10px] flex items-center justify-center">
-              <span className="text-base font-black tracking-tighter bg-gradient-to-r from-rose-600 to-amber-600 bg-clip-text text-transparent">
-                AI
-              </span>
-            </div>
+          <div className="relative group-hover:scale-105 transition-transform flex-shrink-0">
+            <img 
+              src="/logo.png" 
+              alt="AI Study Assistant Logo" 
+              className="w-11 h-11 rounded-xl object-contain shadow-md shadow-rose-500/20 bg-slate-900/5 p-0.5 border border-amber-400/70"
+            />
           </div>
 
           <div>
