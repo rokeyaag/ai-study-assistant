@@ -3,7 +3,7 @@ import { useApp } from '../context/AppContext';
 import { 
   Sparkles, Camera, Trophy, BookOpen, Clock, Play, Pause, 
   RotateCcw, ArrowRight, TrendingUp, AlertCircle, CheckCircle2, 
-  Flame, Zap, BookMarked, HelpCircle, UserCheck
+  Flame, Zap, BookMarked, HelpCircle, UserCheck, Volume2, VolumeX
 } from 'lucide-react';
 import { soundManager } from '../utils/audioEffects';
 
@@ -14,32 +14,43 @@ export const DashboardView = () => {
   const [pomodoroSeconds, setPomodoroSeconds] = useState(25 * 60);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [timerMode, setTimerMode] = useState('focus'); // 'focus' | 'break'
+  const [isTickingSoundOn, setIsTickingSoundOn] = useState(true);
 
   useEffect(() => {
     let interval;
     if (isTimerRunning && pomodoroSeconds > 0) {
       interval = setInterval(() => {
-        setPomodoroSeconds(prev => prev - 1);
+        setPomodoroSeconds(prev => {
+          if (prev <= 1) return 0;
+          if (isTickingSoundOn) {
+            soundManager.playTick();
+          }
+          return prev - 1;
+        });
       }, 1000);
     } else if (pomodoroSeconds === 0 && isTimerRunning) {
       setIsTimerRunning(false);
+      soundManager.playTimerComplete();
       if (timerMode === 'focus') {
-        soundManager.playSuccess();
         addPoints(20, 'completing a 25-minute Pomodoro study block');
         setTimerMode('break');
         setPomodoroSeconds(5 * 60);
       } else {
-        soundManager.playClick();
         setTimerMode('focus');
         setPomodoroSeconds(25 * 60);
       }
     }
     return () => clearInterval(interval);
-  }, [isTimerRunning, pomodoroSeconds, timerMode]);
+  }, [isTimerRunning, pomodoroSeconds, timerMode, isTickingSoundOn]);
 
   const toggleTimer = () => {
-    soundManager.playClick();
-    setIsTimerRunning(!isTimerRunning);
+    if (!isTimerRunning) {
+      soundManager.playStartFocus();
+      setIsTimerRunning(true);
+    } else {
+      soundManager.playPauseFocus();
+      setIsTimerRunning(false);
+    }
   };
 
   const resetTimer = () => {
@@ -231,13 +242,29 @@ export const DashboardView = () => {
             <div className="flex items-center gap-2">
               <button
                 onClick={toggleTimer}
-                className="p-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold transition-all shadow-sm active:scale-95"
+                title={isTimerRunning ? "Pause Timer" : "Start Pomodoro Focus"}
+                className="p-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold transition-all shadow-md shadow-rose-600/30 active:scale-95"
               >
                 {isTimerRunning ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
               </button>
               <button
+                onClick={() => {
+                  soundManager.playClick();
+                  setIsTickingSoundOn(!isTickingSoundOn);
+                }}
+                title={isTickingSoundOn ? "Focus Ticking Sound On" : "Focus Ticking Sound Muted"}
+                className={`p-2.5 rounded-xl border transition-all ${
+                  isTickingSoundOn
+                    ? 'bg-rose-50 border-rose-200 text-rose-600 shadow-sm'
+                    : 'bg-white border-slate-200 text-slate-400 hover:text-slate-600'
+                }`}
+              >
+                {isTickingSoundOn ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+              </button>
+              <button
                 onClick={resetTimer}
-                className="p-2 rounded-xl bg-white hover:bg-slate-100 text-slate-600 transition-colors border border-slate-200 shadow-sm"
+                title="Reset Timer"
+                className="p-2.5 rounded-xl bg-white hover:bg-slate-100 text-slate-600 transition-colors border border-slate-200 shadow-sm active:scale-95"
               >
                 <RotateCcw className="w-4 h-4" />
               </button>
