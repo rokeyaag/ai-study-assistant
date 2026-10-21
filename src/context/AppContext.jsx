@@ -119,6 +119,35 @@ export const AppProvider = ({ children }) => {
     notify('🗑️ Note Deleted', 'The selected note was removed from your vault.', 'info');
   };
 
+    const registerNewStudent = (studentData) => {
+    const newStudent = {
+      ...INITIAL_USER,
+      ...studentData,
+      id: `student_${Date.now()}`,
+      points: 50, // Welcome registration bonus!
+      streak: 1,
+      registeredAt: new Date().toISOString(),
+      dailyGoalProgress: 25,
+      subscription: {
+        tier: "free_trial",
+        trialDaysLeft: 7,
+        proExpiresAt: null
+      }
+    };
+    setUser(newStudent);
+    confetti({
+      particleCount: 130,
+      spread: 90,
+      origin: { y: 0.6 }
+    });
+    soundManager.playReward();
+    notify(
+      `🎉 Welcome, ${studentData.name.split(' ')[0]}!`,
+      'Student registration completed! +50 Welcome Bonus Points awarded.',
+      'success'
+    );
+  };
+
   const updateUserProfile = (updatedFields) => {
     setUser(prev => ({
       ...prev,
@@ -153,6 +182,7 @@ export const AppProvider = ({ children }) => {
         isProfileModalOpen,
         setIsProfileModalOpen,
         updateUserProfile,
+        registerNewStudent,
         isMobileFrame,
         setIsMobileFrame,
         isCompact,
