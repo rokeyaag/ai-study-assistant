@@ -173,3 +173,32 @@
   background-size: 32px 32px;
   background-position: 0 0, 16px 16px;
 }
+
+
+@keyframes shimmerSweep {
+  0% {
+    transform: translateX(-150%);
+  }
+  50%, 100% {
+    transform: translateX(180%);
+  }
+}
+
+.animate-shimmer-sweep {
+  animation: shimmerSweep 3.2s ease-in-out infinite;
+}
+
+@keyframes pulseGlowSoft {
+  0%, 100% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.015);
+  }
+}
+
+.animate-pulse-soft {
+  animation: pulseGlowSoft 3s ease-in-out infinite;
+}

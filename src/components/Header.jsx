@@ -9,10 +9,16 @@ export const Header = ({ isMobileFrame, setIsMobileFrame }) => {
   const isPro = user.subscription.tier === 'pro';
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-xl border-b border-slate-200/80 px-4 py-3 shadow-[0_1px_3px_rgba(0,0,0,0.03)] relative overflow-hidden">
-      {/* Animated Subtle Ambient Top Glow Line */}
+    <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-2xl border-b border-slate-200/80 px-4 py-3 shadow-[0_4px_20px_rgba(0,0,0,0.03)] relative overflow-hidden">
+      {/* Ambient Animated Flowing Header Background Glow */}
+      <div className="absolute inset-0 bg-gradient-to-r from-rose-50/40 via-amber-50/50 via-white to-rose-50/30 bg-[length:200%_200%] animate-gradient-shift pointer-events-none"></div>
+      <div className="absolute -top-12 -left-12 w-48 h-48 bg-amber-400/15 rounded-full blur-2xl animate-float-1 pointer-events-none"></div>
+      <div className="absolute -top-12 right-1/4 w-48 h-48 bg-rose-500/15 rounded-full blur-2xl animate-float-2 pointer-events-none"></div>
+
+      {/* Animated Flowing Bottom Border Accent */}
       <div className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-rose-500 via-amber-400 to-rose-500 animate-gradient-shift"></div>
-      <div className="max-w-4xl mx-auto flex items-center justify-between gap-3">
+
+      <div className="max-w-4xl mx-auto flex items-center justify-between gap-3 relative z-10">
         {/* Brand / Logo */}
         <div 
           onClick={() => {
@@ -21,12 +27,13 @@ export const Header = ({ isMobileFrame, setIsMobileFrame }) => {
           }}
           className="flex items-center gap-2.5 cursor-pointer group"
         >
-          {/* Logo Icon */}
+          {/* Logo Icon with Glowing Accent Ring */}
           <div className="relative group-hover:scale-105 transition-transform flex-shrink-0">
+            <div className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-amber-400 to-rose-500 opacity-60 blur-xs group-hover:opacity-100 transition duration-300"></div>
             <img 
               src="/logo.png" 
               alt="AI Study Assistant Logo" 
-              className="w-11 h-11 rounded-xl object-contain shadow-md shadow-rose-500/20 bg-slate-900/5 p-0.5 border border-amber-400/70"
+              className="relative w-11 h-11 rounded-xl object-contain shadow-md shadow-rose-500/20 bg-slate-900/5 p-0.5 border border-amber-400/70"
             />
           </div>
 
@@ -36,18 +43,31 @@ export const Header = ({ isMobileFrame, setIsMobileFrame }) => {
                 AI Study <span className="text-amber-600 font-extrabold">Assistant</span>
               </h1>
               {isPro ? (
-                <span className="px-1.5 py-0.5 text-[9px] font-black uppercase rounded-md bg-gradient-to-r from-rose-600 to-amber-500 text-white shadow-sm flex items-center gap-0.5">
+                <span className="px-1.5 py-0.5 text-[9px] font-black uppercase rounded-md bg-gradient-to-r from-rose-600 to-amber-500 text-white shadow-sm flex items-center gap-0.5 animate-pulse-soft">
                   <Sparkles className="w-2.5 h-2.5" /> PRO
                 </span>
               ) : (
-                <span className="px-1.5 py-0.5 text-[9px] font-bold rounded-md bg-amber-50 text-amber-700 border border-amber-300">
+                <span className="px-1.5 py-0.5 text-[9px] font-bold rounded-md bg-amber-50 text-amber-700 border border-amber-300 shadow-xs">
                   TRIAL
                 </span>
               )}
             </div>
-            <p className="text-[11px] text-slate-500 font-medium hidden sm:block">
-              Intelligent STEM Learning & Revision Engine
-            </p>
+
+            {/* Head Caption with Animated Shimmer Background Pill */}
+            <div className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-0.5 mt-0.5 rounded-full bg-gradient-to-r from-amber-100/80 via-rose-50/90 to-amber-100/70 border border-amber-200/80 shadow-xs relative overflow-hidden group/caption animate-pulse-soft">
+              {/* Shimmer Light Sweeping across the Caption BG */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent -translate-x-full animate-shimmer-sweep pointer-events-none"></div>
+
+              {/* Glowing AI Live Status Dot */}
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-amber-500"></span>
+              </span>
+
+              <span className="text-[10px] font-bold bg-gradient-to-r from-slate-800 via-rose-700 to-amber-800 bg-clip-text text-transparent tracking-tight">
+                Intelligent STEM Learning & Revision Engine
+              </span>
+            </div>
           </div>
         </div>
 
