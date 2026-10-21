@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Smartphone, Monitor } from 'lucide-react';
+import { soundManager } from './utils/audioEffects';
 import { AppProvider, useApp } from './context/AppContext';
 import { Header } from './components/Header';
 import { BottomNavigation } from './components/BottomNavigation';
@@ -68,6 +70,28 @@ const MainLayout = () => {
         <div className="shrink-0 z-30">
           <BottomNavigation />
         </div>
+      </div>
+
+            {/* Desktop Floating Viewport Switcher */}
+      <div 
+        onClick={() => {
+          soundManager.playClick();
+          setIsMobileFrame(!isMobileFrame);
+        }}
+        title="Toggle between Mobile Shell and Full Web View"
+        className="fixed top-4 right-4 z-50 hidden md:flex items-center gap-2 bg-slate-900/90 text-white backdrop-blur-xl px-3.5 py-1.5 rounded-full border border-white/20 shadow-xl cursor-pointer hover:bg-slate-800 hover:scale-105 transition-all text-xs font-bold"
+      >
+        {isMobileFrame ? (
+          <>
+            <Monitor className="w-3.5 h-3.5 text-rose-400" />
+            <span>Full Web View</span>
+          </>
+        ) : (
+          <>
+            <Smartphone className="w-3.5 h-3.5 text-amber-400" />
+            <span>Mobile Device View</span>
+          </>
+        )}
       </div>
 
       {/* Global Modals & Notifications */}
