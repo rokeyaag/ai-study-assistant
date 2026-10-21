@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useApp } from '../context/AppContext';
 import { 
   X, User, GraduationCap, BookOpen, Target, Clock, 
   Sparkles, Flame, Coins, Check, Camera, ShieldCheck, Award,
   Building, Mail, Lock, UserPlus, QrCode, CreditCard, ChevronRight,
-  CheckCircle2, RefreshCw
+  CheckCircle2, RefreshCw, Upload, ImagePlus, Loader2
 } from 'lucide-react';
 import { soundManager } from '../utils/audioEffects';
+import { processImageFile } from '../utils/imageHelper';
 
 const PRESET_AVATARS = [
   "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80",
@@ -50,10 +51,16 @@ export const StudentProfileModal = () => {
     isProfileModalOpen, 
     setIsProfileModalOpen, 
     vaultNotes,
+    notify,
     setActiveTab 
   } = useApp();
 
   const [activeModalTab, setActiveModalTab] = useState('profile'); // 'profile' | 'register'
+  const [isUploading, setIsUploading] = useState(false);
+
+  // File input refs for uploading custom photos
+  const profileFileInputRef = useRef(null);
+  const regFileInputRef = useRef(null);
 
   // Profile Edit State
   const [name, setName] = useState(user.name);
@@ -75,6 +82,31 @@ export const StudentProfileModal = () => {
   const [regDailyGoal, setRegDailyGoal] = useState(DAILY_GOAL_OPTIONS[1]);
   const [regAvatar, setRegAvatar] = useState(PRESET_AVATARS[0]);
   const [regPassword, setRegPassword] = useState('');
+
+  // Handle Custom Picture Upload via File System
+  const handleImageUpload = async (e, isRegistration = false) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    try {
+      setIsUploading(true);
+      const dataUrl = await processImageFile(file);
+      soundManager.playReward();
+
+      if (isRegistration) {
+        setRegAvatar(dataUrl);
+        notify('📸 Custom Photo Uploaded!', 'Student registration photo selected.', 'success');
+      } else {
+        setSelectedAvatar(dataUrl);
+        notify('📸 Photo Uploaded Successfully!', 'New profile picture set. Click "Save Profile Changes" to finish.', 'success');
+      }
+    } catch (err) {
+      notify('Upload Error', err.message || 'Could not process photo', 'error');
+    } finally {
+      setIsUploading(false);
+      e.target.value = '';
+    }
+  };
 
   // Sync state whenever modal opens
   useEffect(() => {
@@ -238,11 +270,24 @@ export const StudentProfileModal = () => {
 
                   {/* Student Details */}
                   <div className="flex items-center gap-4">
-                    <img
-                      src={selectedAvatar}
-                      alt="Student"
-                      className="w-16 h-16 rounded-2xl border-2 border-amber-400 object-cover shadow-lg shrink-0"
-                    />
+                    <div 
+                      onClick={() => profileFileInputRef.current?.click()}
+                      title="Click to upload custom picture"
+                      className="relative shrink-0 group cursor-pointer"
+                    >
+                      <img
+                        src={selectedAvatar}
+                        alt="Student"
+                        className="w-16 h-16 rounded-2xl border-2 border-amber-400 object-cover shadow-lg shrink-0 group-hover:brightness-90 transition-all"
+                      />
+                      <div className="absolute -bottom-1 -right-1 p-1 rounded-full bg-amber-500 text-slate-950 shadow-md border-2 border-slate-900 group-hover:scale-110 transition-transform flex items-center justify-center">
+                        {isUploading ? (
+                          <Loader2 className="w-3 h-3 animate-spin text-white" />
+                        ) : (
+                          <Camera className="w-3 h-3 text-slate-950" />
+                        )}
+                      </div>
+                    </div>
                     <div className="min-w-0 flex-1">
                       <h4 className="text-lg font-black text-white truncate">{name}</h4>
                       <p className="text-xs text-amber-300 font-bold">{grade}</p>
@@ -277,21 +322,54 @@ export const StudentProfileModal = () => {
                 </div>
               </div>
 
+              {/* Hidden file input for custom photo upload */}
+              <input
+                type="file"
+                ref={profileFileInputRef}
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => handleImageUpload(e, false)}
+              />
+
               {/* Avatar Selector Drawer */}
-              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2">
+              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2.5">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-black text-slate-700">Scholar Avatar:</span>
-                  <button
-                    type="button"
-                    onClick={() => setShowAvatarPicker(!showAvatarPicker)}
-                    className="text-xs font-bold text-amber-700 hover:text-amber-800 cursor-pointer"
-                  >
-                    {showAvatarPicker ? "Close Avatars" : "Choose New Avatar"}
-                  </button>
+                  <span className="text-xs font-black text-slate-700">Scholar Avatar / Photo:</span>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => profileFileInputRef.current?.click()}
+                      disabled={isUploading}
+                      className="px-2.5 py-1 text-xs font-bold rounded-lg bg-amber-500 hover:bg-amber-600 text-white flex items-center gap-1 shadow-xs cursor-pointer"
+                      title="Upload picture from your device"
+                    >
+                      {isUploading ? <Loader2 className="w-3 h-3 animate-spin" /> : <Upload className="w-3 h-3" />}
+                      <span>Upload Picture</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setShowAvatarPicker(!showAvatarPicker)}
+                      className="text-xs font-bold text-amber-700 hover:text-amber-800 cursor-pointer"
+                    >
+                      {showAvatarPicker ? "Close Presets" : "Choose Presets"}
+                    </button>
+                  </div>
                 </div>
 
                 {showAvatarPicker && (
                   <div className="flex items-center gap-2 overflow-x-auto py-1 animate-in fade-in duration-200">
+                    {/* Upload Custom Tile */}
+                    <button
+                      type="button"
+                      onClick={() => profileFileInputRef.current?.click()}
+                      className="flex flex-col items-center justify-center w-12 h-11 rounded-xl border-2 border-dashed border-amber-400 bg-amber-50 hover:bg-amber-100 text-amber-800 transition-all shrink-0 cursor-pointer group"
+                      title="Upload photo from your phone or PC"
+                    >
+                      <ImagePlus className="w-3.5 h-3.5 text-amber-700 group-hover:scale-110 transition-transform" />
+                      <span className="text-[7.5px] font-black uppercase mt-0.5">Upload</span>
+                    </button>
+
                     {PRESET_AVATARS.map((av, idx) => (
                       <button
                         key={idx}
@@ -559,12 +637,49 @@ export const StudentProfileModal = () => {
                   </div>
                 </div>
 
-                {/* Avatar Chooser */}
-                <div>
-                  <label className="block text-xs font-black text-slate-700 mb-1.5">
-                    Pick Student Avatar:
-                  </label>
+                {/* Hidden file input for registration photo */}
+                <input
+                  type="file"
+                  ref={regFileInputRef}
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => handleImageUpload(e, true)}
+                />
+
+                {/* Avatar & Photo Chooser */}
+                <div className="p-3 rounded-2xl bg-rose-50/60 border border-rose-200/80 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <label className="block text-xs font-black text-slate-800">
+                        Pick Avatar or Upload Picture:
+                      </label>
+                      <span className="text-[10px] text-slate-500 font-medium">Use personal photo or scholar avatar</span>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => regFileInputRef.current?.click()}
+                      disabled={isUploading}
+                      className="px-2.5 py-1 text-xs font-bold rounded-lg bg-gradient-to-r from-rose-600 to-amber-500 hover:from-rose-500 hover:to-amber-400 text-white flex items-center gap-1 shadow-xs cursor-pointer disabled:opacity-50"
+                      title="Upload picture from your phone or PC"
+                    >
+                      {isUploading ? <Loader2 className="w-3 h-3 animate-spin" /> : <Upload className="w-3 h-3" />}
+                      <span>Upload Picture</span>
+                    </button>
+                  </div>
+
                   <div className="flex items-center gap-2 overflow-x-auto py-1">
+                    {/* Upload Custom Tile */}
+                    <button
+                      type="button"
+                      onClick={() => regFileInputRef.current?.click()}
+                      className="flex flex-col items-center justify-center w-12 h-10 rounded-xl border-2 border-dashed border-rose-300 bg-white hover:bg-rose-100/60 text-rose-700 transition-all shrink-0 cursor-pointer group"
+                      title="Upload photo from your phone or PC"
+                    >
+                      <ImagePlus className="w-3.5 h-3.5 text-rose-600 group-hover:scale-110 transition-transform" />
+                      <span className="text-[7.5px] font-black uppercase mt-0.5">Upload</span>
+                    </button>
+
                     {PRESET_AVATARS.map((av, idx) => (
                       <button
                         key={idx}
